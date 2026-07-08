@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpematico, rss reader, autoblog, rss, feed
 Requires PHP: 7.0
 Requires at least: 5.9
-Tested up to: 6.6
-Stable tag: 1.0.0
+Tested up to: 7.0
+Stable tag: 2.0.0
 License: GPLv2 or later.
 
 Add On for WPeMatico plugin. Adds a feature to print pre-formatted feeds contents directly on your pages, posts, widgets, etc. 
@@ -28,6 +28,7 @@ The most important characteristics that makes this add-on the first choice compa
 > * Choose a specific post or post-type previously created to display the feed content using the WordPress function get_the_content.
 > * Page template for pages only, select a previously created page to display the feed content, you can also choose the default page template from the plugin or theme’s page templates.
 > * Generate a [shortcode] using the campaign slug and insert it anywhere on your website (posts, pages, cpt, widgets, and more) to display the feed content.
+> * Choose a ready-made display layout — List, Grid, or Excerpt & Thumbnail — from a visual picker in the campaign editor.
 > * Customize the HTML structure where the feed items will be displayed, adjust the layout, styles and visual components to perfectly fit your site.
  
 = Requirements =
@@ -67,8 +68,19 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 
 == Changelog ==
 
+= 2.0.0 =
+* New: Display layouts — choose List, Grid, or Excerpt & Thumbnail from a visual picker in the campaign editor.
+* New: "Customize HTML" advanced mode to edit the per-item template without changing the selected layout.
+* New: ItemImage template tag to show each item's image (from the source feed) in the image-based layouts.
+* Improved: feed items are stored as structured data and rendered on display, so layout or template changes apply immediately without re-fetching. Rendered output is cached for performance.
+
 = 1.0.0 =
 * First release
 
 == Upgrade Notice ==
-* Initial version
+
+= 2.0.0 =
+Adds selectable display layouts (List, Grid, Excerpt & Thumbnail) and an advanced HTML customization mode. Existing campaigns keep working; their items refresh into the new format on the next fetch.
+
+= 1.0.0 =
+Initial version

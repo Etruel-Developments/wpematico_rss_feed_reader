@@ -94,4 +94,55 @@ jQuery(document).ready(function ($) {
             }
         }
     });
+
+    // ---- Layout picker ----
+    (function () {
+        var $cards = $('.wpe_rss-layout-card');
+        if (!$cards.length) {
+            return;
+        }
+        var $radios = $('.wpe_rss-layout-radio');
+        var $textarea = $('#campaign_rss_html_content');
+        var $note = $('.wpe_rss-layout-custom-note');
+        var $toggle = $('.wpe_rss-advanced-toggle');
+        var $panel = $('#wpe_rss-template-panel');
+        var $label = $('.wpe_rss-advanced-label');
+        var presets = (backend_object_rss && backend_object_rss.presets) || {};
+
+        function norm(s) { return (s || '').replace(/\s+/g, ' ').replace(/'/g, '"').trim(); }
+        function currentLayout() { return $radios.filter(':checked').val() || 'list'; }
+        function presetFor(layout) { return presets[layout] || ''; }
+        function isCustom(layout) { return norm($textarea.val()) !== norm(presetFor(layout)); }
+
+        var previousLayout = currentLayout();
+
+        function refreshNote() { $note.toggle(isCustom(currentLayout())); }
+
+        function openPanel(open) {
+            $panel.toggle(open);
+            $toggle.attr('aria-expanded', open ? 'true' : 'false').toggleClass('is-open', open);
+            $label.text(open ? backend_object_rss.hide_html : backend_object_rss.show_html);
+        }
+
+        $radios.on('change', function () {
+            var layout = $(this).val();
+            if (isCustom(previousLayout) && !window.confirm(backend_object_rss.confirm_overwrite)) {
+                $radios.filter('[value="' + previousLayout + '"]').prop('checked', true);
+                return;
+            }
+            $textarea.val(presetFor(layout));
+            $cards.removeClass('is-selected');
+            $(this).closest('.wpe_rss-layout-card').addClass('is-selected');
+            previousLayout = layout;
+            refreshNote();
+        });
+
+        $textarea.on('input', refreshNote);
+        $toggle.on('click', function () { openPanel($panel.is(':hidden')); });
+
+        refreshNote();
+        if (isCustom(currentLayout())) {
+            openPanel(true);
+        }
+    })();
 });
