@@ -1,0 +1,63 @@
+/* WPeMatico RSS Feed Reader — frontend layouts */
+
+.wpe_rss-feed .wpe_rss-item {
+	margin-bottom: 1.5em;
+}
+.wpe_rss-feed .wpe_rss-title h2,
+.wpe_rss-feed .wpe_rss-title h3 {
+	margin: 0 0 .3em;
+}
+.wpe_rss-feed .wpe_rss-metadata {
+	font-size: .85em;
+	opacity: .7;
+	margin-bottom: .5em;
+}
+.wpe_rss-feed .wpe_rss-thumb img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+/* Hide broken thumbnails when a feed item has no image. */
+.wpe_rss-feed .wpe_rss-thumb img[src=""] {
+	display: none;
+}
+
+/* Grid */
+.wpe_rss-layout-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+.wpe_rss-layout-grid .wpe_rss-item {
+	margin-bottom: 0;
+}
+.wpe_rss-layout-grid .wpe_rss-thumb {
+	margin-bottom: .6em;
+}
+
+/* Excerpt & Thumbnail */
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-item {
+	display: flex;
+	gap: 18px;
+	align-items: flex-start;
+}
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-thumb {
+	flex: 0 0 220px;
+}
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-body {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+@media (max-width: 782px) {
+	.wpe_rss-layout-grid {
+		grid-template-columns: 1fr;
+	}
+	.wpe_rss-layout-excerpt_thumbnail .wpe_rss-item {
+		flex-direction: column;
+	}
+	.wpe_rss-layout-excerpt_thumbnail .wpe_rss-thumb {
+		flex-basis: auto;
+		width: 100%;
+	}
+}

@@ -1,10 +1,9 @@
 <?php
 /**
  * Plugin Name:     WPeMatico RSS Feed Reader
- * Requires Plugins: wpematico
  * Plugin URI:      https://etruel.com/downloads/wpematico-rss-feed-reader/
  * Description:     RSS Feed Reader print pre-formatted feeds contents directly on your pages, posts, widgets, etc. 
- * Version:         1.0.0
+ * Version:         2.0.0
  * Author:			Etruel Developments LLC
  * Author URI:		https://etruel.com/
  * Text Domain:     wpematico-rss-feed-reader
@@ -18,6 +17,7 @@
  * @Release	C4
  */
 
+ /* Volver a agregar= Requires Plugins: wpematico */
 
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
@@ -26,7 +26,7 @@ if( !class_exists( 'WPeMatico_RSS_Feed_Reader' ) ) {
 
 	// Plugin version
 	if(!defined('WPEMATICO_RSS_FEED_READER_VER')) {
-		define('WPEMATICO_RSS_FEED_READER_VER', '1.0.0' );
+		define('WPEMATICO_RSS_FEED_READER_VER', '2.0.0' );
 	}
 	
     /**

@@ -41,22 +41,19 @@ class Wpematico_feed_reader_process {
 
 	public static function allow_insertpost($allow, $fetch, $args){
 		global $post;
-		
+
 		$campaign = $fetch->campaign;
 		$current_item = $fetch->current_item;
-		
-		if ($campaign['campaign_type'] == 'rss_reader' ) {
-			$campaign_rss_html_content = $campaign['campaign_rss_html_content'];
-			$campaign_id = $campaign['ID'];
-			if (self::wpematico_set_rss_data($campaign_id, $current_item, $campaign_rss_html_content)) {
-				$allow = false;
-				// get all posts
-				$all_posts = get_post_meta($campaign_id, 'feed_items');
 
+		if ($campaign['campaign_type'] == 'rss_reader') {
+			$campaign_id = $campaign['ID'];
+			if (self::wpematico_set_rss_data($campaign_id, $current_item)) {
+				$allow = false;
+				$all_posts = get_post_meta($campaign_id, 'feed_items');
 				if (count($all_posts) > $campaign['campaign_max_to_show']) {
-					// erase the oldest posts
 					delete_post_meta($campaign_id, 'feed_items', $all_posts[0]);
 				}
+				wpematico_rss_feed_functions::flush_cache($campaign_id);
 				return $allow;
 			}
 		}
@@ -64,28 +61,36 @@ class Wpematico_feed_reader_process {
 		return $allow;
 	}
 
-	public static function wpematico_set_rss_data($campaign_id, $item, $template = ''){
-
-		if($campaign_id){
-			//start the process to change the template to a feed
-			$template = str_replace('~~~BeginItemsRecord~~~', '', $template);
-			$template = str_replace('~~~ItemPubShortDate~~~', empty($item['date']) ? date_i18n('d-m-Y') : $item['date'], $template);
-			$template = str_replace('~~~ItemPubShortTime~~~', strtotime('now') , $template);
-			$template = str_replace('~~~ItemDescription~~~', $item['content'], $template);
-			$template = str_replace('~~~ItemLink~~~', $item['permalink'], $template);
-			$template = str_replace('~~~ItemTitle~~~', $item['title'], $template);
-			$template = str_replace('~~~ItemSourceUrl~~~', $item['meta']['wpe_sourcepermalink'], $template);
-			$template = str_replace('~~~EndItemsRecord~~~', '', $template);
-			//finish the process
-			
-			
-			
-			//save data for the $campaign_id
-			return add_post_meta($campaign_id, 'feed_items', $template);
+	/**
+	 * Store one feed item as structured data. Rendering happens at display time
+	 * (wpematico_rss_feed_functions::get_rendered_items) so a template/layout change
+	 * is reflected without re-fetching.
+	 */
+	public static function wpematico_set_rss_data($campaign_id, $item){
+		if (!$campaign_id) {
+			return false;
 		}
 
-		return false;
+		$content = isset($item['content']) ? $item['content'] : '';
+		$image   = wpematico_rss_feed_functions::first_image_url($content);
+		if (empty($image) && !empty($item['featured_image']) && filter_var($item['featured_image'], FILTER_VALIDATE_URL)) {
+			$image = $item['featured_image'];
+		}
 
+		// $item['date'] is the feed item's UTC timestamp (campaign_fetch.php). wp_date() renders it in the site timezone.
+		$timestamp = !empty($item['date']) ? (int) $item['date'] : 0;
+
+		$record = array(
+			'title'      => isset($item['title']) ? $item['title'] : '',
+			'link'       => isset($item['permalink']) ? $item['permalink'] : '',
+			'content'    => $content,
+			'date'       => $timestamp ? wp_date('d-m-Y', $timestamp) : wp_date('d-m-Y'),
+			'time'       => $timestamp ? wp_date('H:i', $timestamp) : wp_date('H:i'),
+			'source_url' => isset($item['meta']['wpe_sourcepermalink']) ? $item['meta']['wpe_sourcepermalink'] : '',
+			'image_url'  => $image,
+		);
+
+		return add_post_meta($campaign_id, 'feed_items', $record);
 	}
 }
 

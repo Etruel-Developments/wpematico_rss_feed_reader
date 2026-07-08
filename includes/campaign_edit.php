@@ -79,7 +79,17 @@ class Wpematico_feed_reader_edit {
 
 		wp_enqueue_script('wpematico_rss_feed_reader_campaign_edit', WPEMATICO_RSS_FEED_READER_URL . 'assets/js/campaign_edit.js', array('jquery'), WPEMATICO_RSS_FEED_READER_VER, true);
 
-		wp_localize_script('wpematico_rss_feed_reader_campaign_edit', 'backend_object_rss', array('error_message' => esc_html__('Max to fetch items value must be equal to the max to show items.', 'wpematico-rss-feed-reader')));
+		wp_localize_script('wpematico_rss_feed_reader_campaign_edit', 'backend_object_rss', array(
+			'error_message'     => esc_html__('Max to fetch items value must be equal to the max to show items.', 'wpematico-rss-feed-reader'),
+			'presets'           => array(
+				'list'              => wpematico_rss_feed_functions::get_layout_template('list'),
+				'grid'              => wpematico_rss_feed_functions::get_layout_template('grid'),
+				'excerpt_thumbnail' => wpematico_rss_feed_functions::get_layout_template('excerpt_thumbnail'),
+			),
+			'confirm_overwrite' => esc_html__('This replaces your custom HTML with the selected layout template. Continue?', 'wpematico-rss-feed-reader'),
+			'show_html'         => esc_html__('Show advanced Layout editor.', 'wpematico-rss-feed-reader'),
+			'hide_html'         => esc_html__('Hide advanced Layout editor.', 'wpematico-rss-feed-reader'),
+		));
 	}
 
 	public static function wpematico_rss_feed_reader_box() {
@@ -89,6 +99,7 @@ class Wpematico_feed_reader_edit {
 
 		$campaign_rss_feed_reader  = empty($campaign_data['campaign_rss_feed_reader']) ? '' : $campaign_data['campaign_rss_feed_reader'];
 		$campaign_rss_html_content = (!empty($campaign_data['campaign_rss_html_content'])) ? $campaign_data['campaign_rss_html_content'] : wpematico_rss_feed_functions::wpematico_rss_get_default_template();
+		$campaign_rss_layout = empty($campaign_data['campaign_rss_layout']) ? 'list' : $campaign_data['campaign_rss_layout'];
 		?>
 		<div class="wpe_rss-max-items">
 			<input name="campaign_max_to_show" type="number" min="0" size="3" value="<?php echo esc_attr($campaign_max_to_show); ?>" class="small-text" id="campaign_max_to_show" />
@@ -106,12 +117,73 @@ class Wpematico_feed_reader_edit {
 			<input type="hidden" name="wpematico_shortcode_name" value="<?php echo esc_attr($post->post_name); ?>">
 			<p class="description"><?php esc_html_e('Generates a shortcode that can be used in any place of the website to display the feed content.', 'wpematico-rss-feed-reader'); ?></p>
 		</div>
-		<div class="wpe_rss-template">
-			<p><label for="campaign_rss_html_content"><b><?php esc_html_e('Template feed', 'wpematico-rss-feed-reader') ?></b></label><span class="dashicons dashicons-warning help_tip" title="<?php echo esc_attr($helptip['rss_page_template_html']); ?>"></span></p>
-			<p class="description"><?php esc_html_e('You can customise the HTML structure where the feed elements will be displayed.', 'wpematico-rss-feed-reader'); ?></p>
-			<textarea id="campaign_rss_html_content" name="campaign_rss_html_content" rows="10" cols="100"><?php echo htmlspecialchars( wp_kses_post($campaign_rss_html_content) ); ?></textarea>
+		<div class="wpe_rss-layout">
+			<p class="wpe_rss-layout-heading"><b><?php esc_html_e('Layout', 'wpematico-rss-feed-reader'); ?></b></p>
+			<p class="description"><?php esc_html_e('Pick how each feed item is arranged. You can fine-tune the item HTML below without changing the arrangement.', 'wpematico-rss-feed-reader'); ?></p>
+			<div class="wpe_rss-layout-cards">
+				<?php
+				$layout_names = array(
+					'list'              => esc_html__('List', 'wpematico-rss-feed-reader'),
+					'grid'              => esc_html__('Grid', 'wpematico-rss-feed-reader'),
+					'excerpt_thumbnail' => esc_html__('Excerpt & Thumbnail', 'wpematico-rss-feed-reader'),
+				);
+				foreach ($layout_names as $layout_key => $layout_label) :
+					$is_selected = ($campaign_rss_layout === $layout_key);
+					?>
+					<label class="wpe_rss-layout-card<?php echo $is_selected ? ' is-selected' : ''; ?>" data-layout="<?php echo esc_attr($layout_key); ?>">
+						<input type="radio" class="wpe_rss-layout-radio" name="campaign_rss_layout" value="<?php echo esc_attr($layout_key); ?>" <?php checked($is_selected); ?> />
+						<?php echo self::layout_skeleton($layout_key); // phpcs:ignore WordPress.Security.EscapeOutput -- static markup ?>
+						<span class="wpe_rss-layout-name"><?php echo $layout_label; ?></span>
+					</label>
+				<?php endforeach; ?>
+			</div>
+			<p class="wpe_rss-layout-custom-note" style="display:none;"><span class="dashicons dashicons-edit"></span> <?php esc_html_e('Custom template in use. Pick a layout above to reset it.', 'wpematico-rss-feed-reader'); ?></p>
+			<p class="wpe_rss-image-note"><span class="dashicons dashicons-format-image"></span> <?php echo wp_kses( __('<strong>Grid and Excerpt &amp; Thumbnail</strong> show each item image from the source feed, loaded remotely (not saved to your Media Library).', 'wpematico-rss-feed-reader'), array('strong' => array()) ); ?></p>
+		</div>
+		<p class="wpe_rss-template-toggle">
+			<button type="button" class="button wpe_rss-advanced-toggle" aria-expanded="false" aria-controls="wpe_rss-template-panel">
+				<span class="dashicons dashicons-arrow-right-alt2"></span> <span class="wpe_rss-advanced-label"><?php esc_html_e('Show advanced Layout editor.', 'wpematico-rss-feed-reader'); ?></span>
+			</button>
+		</p>
+		<div class="wpe_rss-template" id="wpe_rss-template-panel" style="display:none;">
+			<p><label for="campaign_rss_html_content"><b><?php esc_html_e('Item template', 'wpematico-rss-feed-reader') ?></b></label><span class="dashicons dashicons-warning help_tip" title="<?php echo esc_attr($helptip['rss_page_template_html']); ?>"></span></p>
+			<p class="description"><?php esc_html_e('Edit the HTML used for each feed item. Editing keeps the selected layout arrangement.', 'wpematico-rss-feed-reader'); ?></p>
+			<textarea id="campaign_rss_html_content" name="campaign_rss_html_content" rows="10" cols="100"><?php echo esc_textarea($campaign_rss_html_content); ?></textarea>
+			<div class="wpe_rss-tags-help">
+				<p class="description"><b><?php esc_html_e('Available tags:', 'wpematico-rss-feed-reader'); ?></b></p>
+				<ul class="wpe_rss-tags-list">
+					<li><code>~~~BeginItemsRecord~~~</code> / <code>~~~EndItemsRecord~~~</code> — <?php esc_html_e('wrap the block that repeats for each feed item.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemTitle~~~</code> — <?php esc_html_e('item title.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemLink~~~</code> — <?php esc_html_e('URL to the original item.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemDescription~~~</code> — <?php esc_html_e('item content or description.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemImage~~~</code> — <?php esc_html_e('item image URL from the source feed (remote, not saved to Media).', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemPubShortDate~~~</code> — <?php esc_html_e('item publication date.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemPubShortTime~~~</code> — <?php esc_html_e('item publication time.', 'wpematico-rss-feed-reader'); ?></li>
+					<li><code>~~~ItemSourceUrl~~~</code> — <?php esc_html_e('source site URL.', 'wpematico-rss-feed-reader'); ?></li>
+				</ul>
+			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * CSS-only skeleton mockup for a layout card (no images).
+	 */
+	private static function layout_skeleton($layout) {
+		switch ($layout) {
+			case 'grid':
+				$cells = str_repeat('<span class="wpe_rss-skel-cell"><i class="b"></i><i class="l"></i></span>', 6);
+				return '<span class="wpe_rss-skel wpe_rss-skel--grid" aria-hidden="true">' . $cells . '</span>';
+
+			case 'excerpt_thumbnail':
+				$rows = str_repeat('<span class="wpe_rss-skel-erow"><i class="t"></i><span class="ll"><i class="l"></i><i class="l"></i><i class="l s"></i></span></span>', 2);
+				return '<span class="wpe_rss-skel wpe_rss-skel--excerpt" aria-hidden="true">' . $rows . '</span>';
+
+			case 'list':
+			default:
+				$rows = str_repeat('<span class="wpe_rss-skel-row"><i class="d"></i><i class="l"></i></span>', 4);
+				return '<span class="wpe_rss-skel wpe_rss-skel--list" aria-hidden="true">' . $rows . '</span>';
+		}
 	}
 
 	public static function wpematico_rss_print_addicional($campaign_data) {
@@ -182,6 +254,10 @@ class Wpematico_feed_reader_edit {
 		}
 
 		$campaign_data['campaign_rss_html_content'] = (!isset($post_data['campaign_rss_html_content']) || empty($post_data['campaign_rss_html_content'])) ? $default_template : (($post_data['campaign_rss_html_content'] != '') ? $post_data['campaign_rss_html_content'] : $default_template);
+
+		$allowed_layouts = wpematico_rss_feed_functions::get_layouts();
+		$layout = isset($post_data['campaign_rss_layout']) ? sanitize_key($post_data['campaign_rss_layout']) : 'list';
+		$campaign_data['campaign_rss_layout'] = in_array($layout, $allowed_layouts, true) ? $layout : 'list';
 
 		$campaign_data['campaign_rss_page_template'] = (!isset($post_data['campaign_rss_page_template']) || empty($post_data['campaign_rss_page_template'])) ? '' : (($post_data['campaign_rss_page_template'] != '') ? $post_data['campaign_rss_page_template'] : '');
 
