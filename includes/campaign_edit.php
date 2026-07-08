@@ -244,7 +244,14 @@ class Wpematico_feed_reader_edit {
 
 		$campaign_data['campaign_max_to_show'] = (!isset($post_data['campaign_max_to_show']) || empty($post_data['campaign_max_to_show'])) ? 5 : (($post_data['campaign_max_to_show'] != 0) ? $post_data['campaign_max_to_show'] : 5);
 
-		$campaign_data['campaign_rss_feed_reader'] = (!isset($post_data['campaign_rss_feed_reader']) || empty($post_data['campaign_rss_feed_reader'])) ? '' : (($post_data['campaign_rss_feed_reader'] != '') ? $post_data['campaign_rss_feed_reader'] : '');
+		// Default new campaigns (no radio submitted) to Shortcode: the simplest, most portable
+		// display mode (paste anywhere, no target post/page). Keep an explicit legacy '' as-is.
+		if (!isset($post_data['campaign_rss_feed_reader'])) {
+			$campaign_data['campaign_rss_feed_reader'] = 'shortcode';
+		} else {
+			$rss_display_mode = $post_data['campaign_rss_feed_reader'];
+			$campaign_data['campaign_rss_feed_reader'] = in_array($rss_display_mode, array('', 'the_content', 'page_template', 'shortcode'), true) ? $rss_display_mode : 'shortcode';
+		}
 
 		$campaign_data['wpematico_shortcode_name'] = (!isset($post_data['wpematico_shortcode_name']) || empty($post_data['wpematico_shortcode_name'])) ? sanitize_title($campaign_data['campaign_title']) : (($post_data['wpematico_shortcode_name'] != '') ? $post_data['wpematico_shortcode_name'] : sanitize_title($campaign_data['campaign_title']));
 
