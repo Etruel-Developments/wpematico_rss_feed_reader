@@ -107,7 +107,7 @@ class Wpematico_feed_reader_edit {
 			<p class="description"><?php esc_html_e('Set a limit on how many feed items will be displayed, make sure this value is not less than the value of "Max items to create on each fetch".', 'wpematico-rss-feed-reader'); ?></p>
 		</div>
 		<div class="wpe_rss-display">
-			<p><b><?php esc_html_e('How to display the feed content:',  'rss_feed_reader') ?></b></p>
+			<p><b><?php esc_html_e('How to display the feed content:', 'wpematico-rss-feed-reader') ?></b></p>
 			<label><input type="radio" name="campaign_rss_feed_reader" <?php echo checked('the_content', $campaign_rss_feed_reader, false); ?> value="the_content" /> <span class="wpe_rss_code">get_the_content()</span> <?php esc_html_e('Wordpress filter', 'wpematico-rss-feed-reader'); ?></label><span class="dashicons dashicons-warning help_tip" title="<?php echo esc_attr($helptip['get_the_content']); ?>"></span><br />
 			<p class="description"><?php esc_html_e('Use the WordPress function "get_the_content()" to display the content of the feed in the selected post type.', 'wpematico-rss-feed-reader'); ?></p>
 			<label><input type="radio" name="campaign_rss_feed_reader" <?php echo checked('page_template', $campaign_rss_feed_reader, false); ?> value="page_template" />
