@@ -49,6 +49,39 @@
 	min-width: 0;
 }
 
+/* Keep description images inside their column in any layout. */
+.wpe_rss-feed .wpe_rss-description img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Grid and Excerpt & Thumbnail are compact card views: trim each item's
+   description so full-content feeds don't create giant, uneven cards. The card
+   already shows the item image as its thumbnail, so hide media embedded in the
+   content that would otherwise blow the card height up. */
+.wpe_rss-layout-grid .wpe_rss-description,
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-description {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.wpe_rss-layout-grid .wpe_rss-description {
+	-webkit-line-clamp: 5;
+	line-clamp: 5;
+}
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-description {
+	-webkit-line-clamp: 4;
+	line-clamp: 4;
+}
+.wpe_rss-layout-grid .wpe_rss-description img,
+.wpe_rss-layout-grid .wpe_rss-description figure,
+.wpe_rss-layout-grid .wpe_rss-description iframe,
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-description img,
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-description figure,
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-description iframe {
+	display: none;
+}
+
 @media (max-width: 782px) {
 	.wpe_rss-layout-grid {
 		grid-template-columns: 1fr;
