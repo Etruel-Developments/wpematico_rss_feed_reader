@@ -98,8 +98,11 @@ class Wpematico_feed_reader_edit {
 		$campaign_max_to_show = empty($campaign_data['campaign_max_to_show']) ? 0 : $campaign_data['campaign_max_to_show'];
 
 		$campaign_rss_feed_reader  = empty($campaign_data['campaign_rss_feed_reader']) ? '' : $campaign_data['campaign_rss_feed_reader'];
-		$campaign_rss_html_content = (!empty($campaign_data['campaign_rss_html_content'])) ? $campaign_data['campaign_rss_html_content'] : wpematico_rss_feed_functions::wpematico_rss_get_default_template();
 		$campaign_rss_layout = empty($campaign_data['campaign_rss_layout']) ? 'list' : $campaign_data['campaign_rss_layout'];
+		// Fall back to the selected layout's preset (not the plain list default) so
+		// an imported campaign with only a layout set shows the matching template
+		// and is not misdetected as a custom template.
+		$campaign_rss_html_content = (!empty($campaign_data['campaign_rss_html_content'])) ? $campaign_data['campaign_rss_html_content'] : wpematico_rss_feed_functions::get_layout_template($campaign_rss_layout);
 		?>
 		<div class="wpe_rss-max-items">
 			<input name="campaign_max_to_show" type="number" min="0" size="3" value="<?php echo esc_attr($campaign_max_to_show); ?>" class="small-text" id="campaign_max_to_show" />

@@ -123,11 +123,14 @@ class wpematico_rss_feed_functions {
 		$items = array_reverse($items);
 		$items = array_slice($items, 0, $campaign['campaign_max_to_show']);
 
+		$layout = !empty($campaign['campaign_rss_layout']) ? $campaign['campaign_rss_layout'] : 'list';
+
+		// With no custom template the item HTML follows the layout, so a campaign
+		// that only has a layout set (e.g. imported from another plugin) still
+		// renders with the right arrangement instead of the plain list default.
 		$template = !empty($campaign['campaign_rss_html_content'])
 			? $campaign['campaign_rss_html_content']
-			: self::wpematico_rss_get_default_template();
-
-		$layout = !empty($campaign['campaign_rss_layout']) ? $campaign['campaign_rss_layout'] : 'list';
+			: self::get_layout_template($layout);
 
 		$html = '';
 		foreach ($items as $item) {

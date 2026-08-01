@@ -73,6 +73,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * New: "Customize HTML" advanced mode to edit the per-item template without changing the selected layout.
 * New: ItemImage template tag to show each item's image (from the source feed) in the image-based layouts.
 * Improved: feed items are stored as structured data and rendered on display, so layout or template changes apply immediately without re-fetching. Rendered output is cached for performance.
+* Improved: a campaign with a layout selected but no custom template now renders that layout's preset (Grid / Excerpt & Thumbnail) instead of the plain list template — so campaigns imported from other plugins keep the right arrangement.
 
 = 1.0.0 =
 * First release
