@@ -23,6 +23,7 @@ class wpematico_rss_feed_functions {
 		add_action('save_post_wpematico', array(__CLASS__, 'flush_on_save'));
 		add_filter('wpematico_fetch_posts_summary', array(__CLASS__, 'reader_fetch_summary'), 10, 3);
 		add_filter('wpematico_campaign_count_column', array(__CLASS__, 'reader_count_column'), 10, 3);
+		add_filter('wpematico_campaign_count_row_meta_keys', array(__CLASS__, 'reader_count_sort_key'));
 	}
 
 	/**
@@ -57,6 +58,15 @@ class wpematico_rss_feed_functions {
 		$cell['count'] = count(get_post_meta($post_id, 'feed_items'));
 		$cell['title'] = __('Feed items stored by this campaign.', 'wpematico-rss-feed-reader');
 		return $cell;
+	}
+
+	/**
+	 * So sorting that column matches what it shows: one `feed_items` row per stored
+	 * item is the figure, and core counts the rows in SQL.
+	 */
+	public static function reader_count_sort_key($keys){
+		$keys[] = 'feed_items';
+		return $keys;
 	}
 
 	public static function wpematico_rss_feed_initiation() {
