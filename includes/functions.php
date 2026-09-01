@@ -22,6 +22,7 @@ class wpematico_rss_feed_functions {
 		add_action('admin_action_wpematico_reset_campaign', array(__CLASS__, 'wpematico_reset_campaign'), 1);
 		add_action('save_post_wpematico', array(__CLASS__, 'flush_on_save'));
 		add_filter('wpematico_fetch_posts_summary', array(__CLASS__, 'reader_fetch_summary'), 10, 3);
+		add_filter('wpematico_campaign_count_column', array(__CLASS__, 'reader_count_column'), 10, 3);
 	}
 
 	/**
@@ -36,6 +37,26 @@ class wpematico_rss_feed_functions {
 		$count = $campaign_id ? count(get_post_meta($campaign_id, 'feed_items')) : 0;
 		/* translators: %s number of stored feed items */
 		return sprintf(_n('%s item stored', '%s items stored', $count, 'wpematico-rss-feed-reader'), number_format_i18n($count));
+	}
+
+	/**
+	 * Same reason, on the campaigns list: the "Posts" column counts inserted posts,
+	 * so a reader campaign sat at 0 however well it was working. Report the items
+	 * stored instead. The filter only exists in WPeMatico 2.9+, so on an older core
+	 * this callback simply never runs.
+	 *
+	 * Free to count here: the list table has already primed the post meta cache for
+	 * the campaigns it lists.
+	 */
+	public static function reader_count_column($cell, $campaign, $post_id){
+		if (empty($campaign['campaign_type']) || $campaign['campaign_type'] !== 'rss_reader') {
+			return $cell;
+		}
+		// Unformatted on purpose: core prints the other campaigns' figure raw and
+		// they share one column.
+		$cell['count'] = count(get_post_meta($post_id, 'feed_items'));
+		$cell['title'] = __('Feed items stored by this campaign.', 'wpematico-rss-feed-reader');
+		return $cell;
 	}
 
 	public static function wpematico_rss_feed_initiation() {

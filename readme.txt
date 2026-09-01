@@ -74,6 +74,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * New: ItemImage template tag to show each item's image (from the source feed) in the image-based layouts.
 * Improved: feed items are stored as structured data and rendered on display, so layout or template changes apply immediately without re-fetching. Rendered output is cached for performance.
 * Improved: a campaign with a layout selected but no custom template now renders that layout's preset (Grid / Excerpt & Thumbnail) instead of the plain list template — so campaigns imported from other plugins keep the right arrangement.
+* Improved: the Posts column of the campaigns list now shows how many feed items the campaign has stored. Reader campaigns publish no posts, so that column read 0 however many items had been fetched. Needs WPeMatico 2.9.
 
 = 1.0.0 =
 * First release
