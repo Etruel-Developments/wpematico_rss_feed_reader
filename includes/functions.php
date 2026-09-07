@@ -363,7 +363,7 @@ class wpematico_rss_feed_functions {
 
 	public static function wpematico_reset_campaign($status = '') {
 		if (!( isset($_GET['post']) || isset($_POST['post']) || ( isset($_REQUEST['action']) && 'wpematico_reset_campaign' == $_REQUEST['action'] ) )) {
-			wp_die( esc_html__('No campaign ID has been supplied!', 'wpematico'));
+			wp_die( esc_html__('No campaign ID has been supplied!', 'wpematico-rss-feed-reader'));
 		}
 		$nonce = '';
 		if (isset($_REQUEST['nonce'])) {
