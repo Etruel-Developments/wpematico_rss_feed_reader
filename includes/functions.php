@@ -20,7 +20,8 @@ class wpematico_rss_feed_functions {
 		add_action('template_redirect', array(__CLASS__, 'wpematico_rss_feed_initiation'), 999999);
 		add_filter('theme_page_templates', array(__CLASS__,'wpematico_add_custom_template'));
 		add_action('admin_action_wpematico_reset_campaign', array(__CLASS__, 'wpematico_reset_campaign'), 1);
-		add_action('save_post_wpematico', array(__CLASS__, 'flush_on_save'));
+		// Late on save_post: save_post_wpematico fires before core stores campaign_data.
+		add_action('save_post', array(__CLASS__, 'flush_on_save'), 20);
 		add_filter('wpematico_fetch_posts_summary', array(__CLASS__, 'reader_fetch_summary'), 10, 3);
 		add_filter('wpematico_campaign_count_column', array(__CLASS__, 'reader_count_column'), 10, 3);
 		add_filter('wpematico_campaign_count_row_meta_keys', array(__CLASS__, 'reader_count_sort_key'));
@@ -237,8 +238,9 @@ class wpematico_rss_feed_functions {
 		return str_replace(array_keys($replacements), array_values($replacements), $template);
 	}
 
+	// Versioned: an upgrade that changes the rendering must not hit a day-old transient.
 	public static function cache_key($campaign_id){
-		return 'wpe_rss_' . (int) $campaign_id;
+		return 'wpe_rss_' . (int) $campaign_id . '_' . substr(md5(WPEMATICO_RSS_FEED_READER_VER), 0, 8);
 	}
 
 	public static function flush_cache($campaign_id){
@@ -246,8 +248,53 @@ class wpematico_rss_feed_functions {
 	}
 
 	public static function flush_on_save($post_id){
+		if (get_post_type($post_id) !== 'wpematico') {
+			return;
+		}
+
 		self::flush_cache($post_id);
+
+		$campaign = WPeMatico::get_campaign($post_id);
+		if (!empty($campaign['campaign_type']) && $campaign['campaign_type'] === 'rss_reader') {
+			// The fetch only trims when it stores an item, so a lowered "Max items to
+			// show" is applied here or a campaign with no new items never shrinks.
+			self::trim_items($post_id, $campaign['campaign_max_to_show']);
+		}
 	}
+
+	/**
+	 * Keep at most $max_to_show stored items, dropping the oldest first.
+	 *
+	 * Deletes by meta id: delete_post_meta() given a value removes every row holding
+	 * it, and two feed items can be identical.
+	 */
+	public static function trim_items($campaign_id, $max_to_show){
+		global $wpdb;
+
+		$campaign_id = (int) $campaign_id;
+		$max_to_show = (int) $max_to_show;
+		if ($campaign_id < 1 || $max_to_show < 1) {
+			return 0;
+		}
+
+		$meta_ids = $wpdb->get_col($wpdb->prepare(
+			"SELECT meta_id FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = 'feed_items' ORDER BY meta_id ASC",
+			$campaign_id
+		));
+
+		$excess = count($meta_ids) - $max_to_show;
+		if ($excess < 1) {
+			return 0;
+		}
+
+		foreach (array_slice($meta_ids, 0, $excess) as $meta_id) {
+			delete_metadata_by_mid('post', $meta_id);
+		}
+		self::flush_cache($campaign_id);
+
+		return $excess;
+	}
+
 	public static function wpematico_rss_get_default_template(){
 
 		return 

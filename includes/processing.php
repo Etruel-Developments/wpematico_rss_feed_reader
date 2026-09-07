@@ -49,10 +49,7 @@ class Wpematico_feed_reader_process {
 			$campaign_id = $campaign['ID'];
 			if (self::wpematico_set_rss_data($campaign_id, $current_item)) {
 				$allow = false;
-				$all_posts = get_post_meta($campaign_id, 'feed_items');
-				if (count($all_posts) > $campaign['campaign_max_to_show']) {
-					delete_post_meta($campaign_id, 'feed_items', $all_posts[0]);
-				}
+				wpematico_rss_feed_functions::trim_items($campaign_id, $campaign['campaign_max_to_show']);
 				wpematico_rss_feed_functions::flush_cache($campaign_id);
 				return $allow;
 			}
