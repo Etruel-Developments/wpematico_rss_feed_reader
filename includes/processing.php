@@ -46,7 +46,9 @@ class Wpematico_feed_reader_process {
 		$current_item = $fetch->current_item;
 
 		if ($campaign['campaign_type'] == 'rss_reader') {
-			$campaign_id = $campaign['ID'];
+			// $fetch->campaign_id, never $campaign['ID']: that one comes from the stored
+			// campaign_data and an imported campaign can carry 0 there.
+			$campaign_id = (int) $fetch->campaign_id;
 			if (self::wpematico_set_rss_data($campaign_id, $current_item)) {
 				$allow = false;
 				wpematico_rss_feed_functions::trim_items($campaign_id, $campaign['campaign_max_to_show']);
