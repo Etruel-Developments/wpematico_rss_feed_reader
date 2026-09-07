@@ -75,6 +75,13 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * Improved: feed items are stored as structured data and rendered on display, so layout or template changes apply immediately without re-fetching. Rendered output is cached for performance.
 * Improved: a campaign with a layout selected but no custom template now renders that layout's preset (Grid / Excerpt & Thumbnail) instead of the plain list template — so campaigns imported from other plugins keep the right arrangement.
 * Improved: the Posts column of the campaigns list now shows how many feed items the campaign has stored. Reader campaigns publish no posts, so that column read 0 however many items had been fetched. Needs WPeMatico 2.9.
+* Improved: with the "get_the_content()" and "RSS Page Template" display modes the feed is now added below the content of the chosen post or page, which keeps everything that page already said.
+* Improved: only the post or page a campaign targets is touched now. The rest of the site is left exactly as the theme and the other plugins render it, embeds included.
+* Improved: reader campaigns no longer copy the source's images, audio or video into your site. They display a feed, so nothing is downloaded to your Media Library or your uploads folder whatever the global media settings say.
+* Improved: the Schedule Cron box is available on reader campaigns, so the feed refresh interval can be set from the campaign editor like any other campaign.
+* Improved: lowering "Max items to show" now shrinks the stored feed right away instead of waiting for the campaign to fill up again.
+* Improved: feed items whose title carries quotation marks, ampersands or apostrophes render correctly in every layout.
+* Improved: an item that comes with no image no longer leaves an empty thumbnail placeholder in the Grid and Excerpt & Thumbnail layouts.
 
 = 1.0.0 =
 * First release
@@ -82,7 +89,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 == Upgrade Notice ==
 
 = 2.0.0 =
-Adds selectable display layouts (List, Grid, Excerpt & Thumbnail) and an advanced HTML customization mode. Existing campaigns keep working; their items refresh into the new format on the next fetch.
+Adds selectable display layouts (List, Grid, Excerpt & Thumbnail) and an advanced HTML customization mode. Reader campaigns now add their feed to the chosen post or page instead of taking its place, keep the source's media remote, and get their own Schedule Cron box. Existing campaigns keep working; their items refresh into the new format on the next fetch.
 
 = 1.0.0 =
 Initial version
