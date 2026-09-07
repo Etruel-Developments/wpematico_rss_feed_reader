@@ -24,6 +24,22 @@ class wpematico_rss_feed_functions {
 		add_filter('wpematico_fetch_posts_summary', array(__CLASS__, 'reader_fetch_summary'), 10, 3);
 		add_filter('wpematico_campaign_count_column', array(__CLASS__, 'reader_count_column'), 10, 3);
 		add_filter('wpematico_campaign_count_row_meta_keys', array(__CLASS__, 'reader_count_sort_key'));
+		// The media pipeline runs before wpematico_allow_insertpost, so a reader
+		// campaign has to opt out of it here.
+		add_filter('wpematico_images_options', array(__CLASS__, 'no_media_options'), 99, 3);
+		add_filter('wpematico_audios_options', array(__CLASS__, 'no_media_options'), 99, 3);
+		add_filter('wpematico_videos_options', array(__CLASS__, 'no_media_options'), 99, 3);
+	}
+
+	/**
+	 * Every image/audio/video switch off for a reader campaign. Rebuilt from the keys
+	 * core supplied, so an option added later is covered too.
+	 */
+	public static function no_media_options($options, $settings = array(), $campaign = array()){
+		if (empty($campaign['campaign_type']) || $campaign['campaign_type'] !== 'rss_reader') {
+			return $options;
+		}
+		return array_fill_keys(array_keys((array) $options), false);
 	}
 
 	/**
