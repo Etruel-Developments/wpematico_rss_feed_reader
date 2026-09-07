@@ -94,3 +94,14 @@
 		width: 100%;
 	}
 }
+
+/* The presets always print the <img>, so an item with no image needs its thumb hidden.
+   The second rule is the fallback where :has() is unsupported. */
+.wpe_rss-thumb:has(img[src=""]),
+.wpe_rss-thumb:has(img:not([src])) {
+	display: none;
+}
+.wpe_rss-thumb img[src=""],
+.wpe_rss-thumb img:not([src]) {
+	display: none;
+}
