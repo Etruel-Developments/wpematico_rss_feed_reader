@@ -27,6 +27,24 @@ class wpematico_rss_feed_functions {
 	}
 
 	/**
+	 * The reader campaigns of this site, resolved once per request: get_campaigns()
+	 * runs the wpematico_check_campaigndata chain per campaign and the callers below
+	 * run on every the_content pass.
+	 */
+	public static function reader_campaigns(){
+		static $campaigns = null;
+		if ($campaigns === null) {
+			$campaigns = array();
+			foreach (WPeMatico::get_campaigns() as $campaign) {
+				if (!empty($campaign['campaign_type']) && $campaign['campaign_type'] === 'rss_reader') {
+					$campaigns[] = $campaign;
+				}
+			}
+		}
+		return $campaigns;
+	}
+
+	/**
 	 * Reader campaigns insert no posts, so core's "Processed Posts: 0" is misleading.
 	 * Report the number of feed items currently stored (what the shortcode will show).
 	 */
@@ -70,65 +88,75 @@ class wpematico_rss_feed_functions {
 	}
 
 	public static function wpematico_rss_feed_initiation() {
-		global $wpematico_stopwith;
-		$campaigns = WpeMatico::get_campaigns();
-		
-		$wpematico_stopwith = array();
-		
-		foreach ($campaigns as $campaign) {
-			if ($campaign['campaign_type'] == 'rss_reader') {
+		$renders = false;
 
-				if (!empty($campaign['campaign_rss_feed_reader'])) {
-					wp_enqueue_style('wpematico_rss_feed_reader_front', WPEMATICO_RSS_FEED_READER_URL . 'assets/css/reader.css', array('dashicons'), WPEMATICO_RSS_FEED_READER_VER);
-					switch ($campaign['campaign_rss_feed_reader']) {
-						case 'shortcode':
-							add_shortcode('wpematico-' . $campaign['wpematico_shortcode_name'], array(__CLASS__, 'wpematico_rss_get_content'));
-							break;
-						
-						case 'page_template':
-							add_action('the_content', array(__CLASS__, 'wpematico_rss_get_content'), 999);
-							break;
+		foreach (self::reader_campaigns() as $campaign) {
+			if (empty($campaign['campaign_rss_feed_reader'])) {
+				continue;
+			}
+			$renders = true;
 
-						case 'the_content':
-							add_action('the_content', array(__CLASS__, 'wpematico_rss_get_content'), 999);
-							break;
-
-						default:
-							break;
-					}
-				}
+			if ($campaign['campaign_rss_feed_reader'] === 'shortcode') {
+				add_shortcode('wpematico-' . $campaign['wpematico_shortcode_name'], array(__CLASS__, 'render_shortcode'));
 			}
 		}
+
+		if (!$renders) {
+			return;
+		}
+
+		wp_enqueue_style('wpematico_rss_feed_reader_front', WPEMATICO_RSS_FEED_READER_URL . 'assets/css/reader.css', array('dashicons'), WPEMATICO_RSS_FEED_READER_VER);
+		add_filter('the_content', array(__CLASS__, 'append_to_content'), 999);
 	}
 
-	public static function wpematico_rss_get_content($content = ''){
-		global $post, $wpematico_stopwith;
+	/**
+	 * Shortcode callback for every reader campaign, resolved from the tag that fired.
+	 */
+	public static function render_shortcode($atts = array(), $content = '', $tag = ''){
+		$name = substr((string) $tag, strlen('wpematico-'));
 
-		$campaigns = WpeMatico::get_campaigns();
+		foreach (self::reader_campaigns() as $campaign) {
+			if (!empty($campaign['wpematico_shortcode_name']) && $campaign['wpematico_shortcode_name'] === $name) {
+				return wp_kses_post(self::get_rendered_items($campaign));
+			}
+		}
 
-		foreach($campaigns as $campaign){
-			if ($campaign['campaign_type'] != 'rss_reader') {
+		return '';
+	}
+
+	/**
+	 * Add a campaign's feed to the post or page it targets.
+	 *
+	 * Registered site-wide, so two rules: append to the page's own content rather than
+	 * replace it, and return $content untouched — unfiltered — for every other post.
+	 */
+	public static function append_to_content($content){
+		global $post;
+
+		if (empty($post->ID)) {
+			return $content;
+		}
+
+		foreach (self::reader_campaigns() as $campaign) {
+			if (empty($campaign['campaign_rss_feed_reader']) || $campaign['campaign_rss_feed_reader'] === 'shortcode') {
 				continue;
 			}
 
-			$continue = false;
-			if (!empty($campaign['campaign_post_select']) && $post->post_type == 'post') {
-				$continue = ($campaign['campaign_post_select'] == $post->ID);
-			} elseif (!empty($campaign['campaign_page_select']) && $post->post_type == 'page') {
-				$continue = ($campaign['campaign_page_select'] == $post->ID);
+			$target = 0;
+			if (!empty($campaign['campaign_post_select']) && $post->post_type === 'post') {
+				$target = (int) $campaign['campaign_post_select'];
+			} elseif (!empty($campaign['campaign_page_select']) && $post->post_type === 'page') {
+				$target = (int) $campaign['campaign_page_select'];
 			}
 
-			if ($continue) {
-				$content = self::get_rendered_items($campaign);
-			} elseif (isset($campaign['campaign_rss_feed_reader']) && $campaign['campaign_rss_feed_reader'] == 'shortcode'
-					&& has_shortcode($post->post_content, "wpematico-" . $campaign['wpematico_shortcode_name'])
-					&& !in_array($campaign['wpematico_shortcode_name'], $wpematico_stopwith)) {
-				$wpematico_stopwith[] = $campaign['wpematico_shortcode_name'];
-				$content = self::get_rendered_items($campaign);
+			if ($target !== (int) $post->ID) {
+				continue;
 			}
+
+			$content .= wp_kses_post(self::get_rendered_items($campaign));
 		}
 
-		return wp_kses_post($content);
+		return $content;
 	}
 
 	/**
@@ -190,7 +218,6 @@ class wpematico_rss_feed_functions {
 			'~~~ItemSourceUrl~~~'    => isset($data['source_url']) ? $data['source_url'] : '',
 			'~~~ItemImage~~~'        => isset($data['image_url']) ? $data['image_url'] : '',
 		);
-
 		return str_replace(array_keys($replacements), array_values($replacements), $template);
 	}
 
@@ -205,7 +232,6 @@ class wpematico_rss_feed_functions {
 	public static function flush_on_save($post_id){
 		self::flush_cache($post_id);
 	}
-
 	public static function wpematico_rss_get_default_template(){
 
 		return 
