@@ -41,10 +41,12 @@ class Wpematico_feed_reader_edit {
 		$options[] = array(
 			'value' => 'rss_reader',
 			'text' => esc_html__('RSS Feed Reader', 'wpematico-rss-feed-reader'),
-			'show' => array('feeds-box', 'wpematico-rss-page-feed-url-save'),
+			// cron-box: a reader campaign needs its refresh schedule, and the Activate
+			// checkbox lives in that box.
+			'show' => array('feeds-box', 'wpematico-rss-page-feed-url-save', 'cron-box'),
 			'hide' => array(
 				//WPeMatico boxes
-				'audios-box','videos-box','cron-box','template-box',
+				'audios-box','videos-box','template-box',
 			));
 
 		return $options;
