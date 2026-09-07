@@ -224,17 +224,22 @@ class wpematico_rss_feed_functions {
 	 * Replace the per-item tokens in the template with one stored item's data.
 	 */
 	public static function render_item($data, $template){
+		// A token can land in an attribute: the presets put the title in alt="" and the
+		// URLs in href/src. esc_attr() does not re-encode existing entities and its
+		// &quot; reads as a quote in a text node, so it is safe in both places.
 		$replacements = array(
 			'~~~BeginItemsRecord~~~' => '',
 			'~~~EndItemsRecord~~~'   => '',
-			'~~~ItemPubShortDate~~~' => isset($data['date']) ? $data['date'] : '',
-			'~~~ItemPubShortTime~~~' => isset($data['time']) ? $data['time'] : '',
+			'~~~ItemPubShortDate~~~' => isset($data['date']) ? esc_attr($data['date']) : '',
+			'~~~ItemPubShortTime~~~' => isset($data['time']) ? esc_attr($data['time']) : '',
+			// The item's own HTML, meant to render as markup.
 			'~~~ItemDescription~~~'  => isset($data['content']) ? $data['content'] : '',
-			'~~~ItemLink~~~'         => isset($data['link']) ? $data['link'] : '',
-			'~~~ItemTitle~~~'        => isset($data['title']) ? $data['title'] : '',
-			'~~~ItemSourceUrl~~~'    => isset($data['source_url']) ? $data['source_url'] : '',
-			'~~~ItemImage~~~'        => isset($data['image_url']) ? $data['image_url'] : '',
+			'~~~ItemLink~~~'         => isset($data['link']) ? esc_url($data['link']) : '',
+			'~~~ItemTitle~~~'        => isset($data['title']) ? esc_attr($data['title']) : '',
+			'~~~ItemSourceUrl~~~'    => isset($data['source_url']) ? esc_url($data['source_url']) : '',
+			'~~~ItemImage~~~'        => isset($data['image_url']) ? esc_url($data['image_url']) : '',
 		);
+
 		return str_replace(array_keys($replacements), array_values($replacements), $template);
 	}
 
