@@ -47,6 +47,10 @@ class Wpematico_feed_reader_edit {
 			'hide' => array(
 				//WPeMatico boxes
 				'audios-box','videos-box','template-box',
+				// A reader campaign inserts no post, so the categories, tags and format
+				// of the post it would have created have nothing to act on. Core honours
+				// this over the target post type since 2.9; on 2.8 they stay visible.
+				'category-box','post_tag-box','post_format-box',
 			));
 
 		return $options;
