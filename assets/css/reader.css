@@ -36,7 +36,12 @@
 }
 
 /* Excerpt & Thumbnail */
-.wpe_rss-layout-excerpt_thumbnail .wpe_rss-item {
+/* The row only means something when the item really has a thumbnail beside the
+   text. A custom template without one -- the list template kept while the
+   arrangement stays on this layout, which the editor allows -- would otherwise
+   have its own blocks flexed into columns, collapsing the title to its widest
+   word. Without :has() it falls back to the stacked reading, which is right. */
+.wpe_rss-layout-excerpt_thumbnail .wpe_rss-item:has(.wpe_rss-thumb) {
 	display: flex;
 	gap: 18px;
 	align-items: flex-start;

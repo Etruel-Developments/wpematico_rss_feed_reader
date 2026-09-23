@@ -373,7 +373,12 @@ class wpematico_rss_feed_functions {
 			wp_die('Are you sure?');
 		}
 		// Get the original post
-		$id = (isset($_GET['post']) ? absint($_GET['post']) : absint($_POST['post']) );
+		$id = (isset($_GET['post']) ? absint($_GET['post']) : (isset($_POST['post']) ? absint($_POST['post']) : 0) );
+		// Same gate core puts on its own Reset, and this listener runs at priority 1,
+		// so without it the stored items go before core gets to refuse the request.
+		if ( ! $id || ! current_user_can('edit_post', $id) ) {
+			wp_die( esc_html__('You are not allowed to do this.', 'wpematico-rss-feed-reader') );
+		}
 
 		delete_post_meta($id, 'feed_items');
 		self::flush_cache($id);
