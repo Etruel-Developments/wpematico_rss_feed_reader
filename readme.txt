@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpematico, rss reader, autoblog, rss, feed
 Requires PHP: 7.0
 Requires at least: 5.9
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 2.0.0
 License: GPLv2 or later.
 
@@ -82,6 +82,9 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * Improved: lowering "Max items to show" now shrinks the stored feed right away instead of waiting for the campaign to fill up again.
 * Improved: feed items whose title carries quotation marks, ampersands or apostrophes render correctly in every layout.
 * Improved: an item that comes with no image no longer leaves an empty thumbnail placeholder in the Grid and Excerpt & Thumbnail layouts.
+* Improved: the plugin row on the Plugins screen links to your RSS Feed Reader campaigns, and the review link goes to this plugin's own page.
+* Improved: clearing a campaign's stored feed items is limited to users who can edit that campaign.
+* Improved: a campaign kept on the Excerpt & Thumbnail arrangement with an item template that has no image now reads as a clean stacked list instead of squeezing the title into a narrow column.
 
 = 1.0.0 =
 * First release

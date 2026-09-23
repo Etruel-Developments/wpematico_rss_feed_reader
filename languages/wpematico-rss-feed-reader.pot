@@ -1,0 +1,250 @@
+# Copyright (C) 2026
+# This file is distributed under the same license as the WPeMatico RSS Feed Reader plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPeMatico RSS Feed Reader 2.0.0\n"
+"Report-Msgid-Bugs-To: https://etruel.com/my-account/support/\n"
+"POT-Creation-Date: 2026-09-23 18:45+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: wpematico-rss-feed-reader\n"
+
+#: includes/campaign_edit.php:111
+msgid "Max items to show in each read feed."
+msgstr ""
+
+#: includes/campaign_edit.php:112
+msgid "Set a limit on how many feed items will be displayed, make sure this value is not less than the value of \"Max items to create on each fetch\"."
+msgstr ""
+
+#: includes/campaign_edit.php:115
+msgid "How to display the feed content:"
+msgstr ""
+
+#: includes/campaign_edit.php:116
+msgid "Wordpress filter"
+msgstr ""
+
+#: includes/campaign_edit.php:117
+msgid "Use the WordPress function \"get_the_content()\" to display the content of the feed in the selected post type."
+msgstr ""
+
+#: includes/campaign_edit.php:119 includes/campaign_help.php:32
+msgid "RSS Page Template."
+msgstr ""
+
+#: includes/campaign_edit.php:120
+msgid "Works only with \"pages\" you must choose the page and page template where the feed content will be displayed."
+msgstr ""
+
+#: includes/campaign_edit.php:121
+msgid "Shortcode"
+msgstr ""
+
+#: includes/campaign_edit.php:123
+msgid "Generates a shortcode that can be used in any place of the website to display the feed content."
+msgstr ""
+
+#: includes/campaign_edit.php:126
+msgid "Layout"
+msgstr ""
+
+#: includes/campaign_edit.php:127
+msgid "Pick how each feed item is arranged. You can fine-tune the item HTML below without changing the arrangement."
+msgstr ""
+
+#: includes/campaign_edit.php:131
+msgid "List"
+msgstr ""
+
+#: includes/campaign_edit.php:132
+msgid "Grid"
+msgstr ""
+
+#: includes/campaign_edit.php:133
+msgid "Excerpt & Thumbnail"
+msgstr ""
+
+#: includes/campaign_edit.php:145
+msgid "Custom template in use. Pick a layout above to reset it."
+msgstr ""
+
+#: includes/campaign_edit.php:146
+msgid "<strong>Grid and Excerpt &amp; Thumbnail</strong> show each item image from the source feed, loaded remotely (not saved to your Media Library)."
+msgstr ""
+
+#: includes/campaign_edit.php:154
+msgid "Item template"
+msgstr ""
+
+#: includes/campaign_edit.php:155
+msgid "Edit the HTML used for each feed item. Editing keeps the selected layout arrangement."
+msgstr ""
+
+#: includes/campaign_edit.php:158
+msgid "Available tags:"
+msgstr ""
+
+#: includes/campaign_edit.php:160
+msgid "wrap the block that repeats for each feed item."
+msgstr ""
+
+#: includes/campaign_edit.php:161
+msgid "item title."
+msgstr ""
+
+#: includes/campaign_edit.php:162
+msgid "URL to the original item."
+msgstr ""
+
+#: includes/campaign_edit.php:163
+msgid "item content or description."
+msgstr ""
+
+#: includes/campaign_edit.php:164
+msgid "item image URL from the source feed (remote, not saved to Media)."
+msgstr ""
+
+#: includes/campaign_edit.php:165
+msgid "item publication date."
+msgstr ""
+
+#: includes/campaign_edit.php:166
+msgid "item publication time."
+msgstr ""
+
+#: includes/campaign_edit.php:167
+msgid "source site URL."
+msgstr ""
+
+#: includes/campaign_edit.php:43
+msgid "RSS Feed Reader"
+msgstr ""
+
+#: includes/campaign_edit.php:64
+msgid "RSS Contents"
+msgstr ""
+
+#: includes/campaign_edit.php:85
+msgid "Max to fetch items value must be equal to the max to show items."
+msgstr ""
+
+#: includes/campaign_edit.php:91
+msgid "This replaces your custom HTML with the selected layout template. Continue?"
+msgstr ""
+
+#: includes/campaign_edit.php:92 includes/campaign_edit.php:150
+msgid "Show advanced Layout editor."
+msgstr ""
+
+#: includes/campaign_edit.php:93
+msgid "Hide advanced Layout editor."
+msgstr ""
+
+#: includes/campaign_help.php:15
+msgid "Max items to show."
+msgstr ""
+
+#: includes/campaign_help.php:16
+msgid "Maximum items to be shown in each displayed feed: allows to set a limit on how many feed items will be shown in the selected post type, regardless of the method you have chosen. Also, make sure that this value is not less than the \"Max items to create on each fetch\" field which controls the items to be processed during the campaign execution."
+msgstr ""
+
+#: includes/campaign_help.php:21
+msgid "Use %s WordPress Filter."
+msgstr ""
+
+#: includes/campaign_help.php:26
+msgid "Allows to choose the Post Type where the feed content will be displayed. For example, if you select \"Page\", \"Post\" or another CPT, you will need to select the specific post where the content will be displayed using the WordPress %s function."
+msgstr ""
+
+#: includes/campaign_help.php:33
+msgid "Exclusive for Pages, allows to select a previously created page and also its page template to display the feed content, you will be able to choose the default template of the plugin or theme templates."
+msgstr ""
+
+#: includes/campaign_help.php:37
+msgid "Use Shortcode."
+msgstr ""
+
+#: includes/campaign_help.php:38
+msgid "Generate a shortcode using the campaign slug. This shortcode can be inserted on your website to display the content of the feed configured in the campaign, you can modify the shortcode by editing the campaign slug."
+msgstr ""
+
+#: includes/campaign_help.php:42
+msgid "Template feed."
+msgstr ""
+
+#: includes/campaign_help.php:43
+msgid "Allows to customize the HTML structure where the feed items will be displayed, adjust the layout, styles and visual components to perfectly fit your site, but be careful not to delete the variables that store each content."
+msgstr ""
+
+#: includes/class.extension-activation.php:50
+msgid "This plugin"
+msgstr ""
+
+#: includes/class.extension-activation.php:87
+msgid "activate it"
+msgstr ""
+
+#: includes/class.extension-activation.php:90
+msgid "install it"
+msgstr ""
+
+#: includes/functions.php:359
+msgid "Feed reader template"
+msgstr ""
+
+#: includes/functions.php:366
+msgid "No campaign ID has been supplied!"
+msgstr ""
+
+#: includes/functions.php:380
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/functions.php:75
+msgid "%s item stored"
+msgid_plural "%s items stored"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/functions.php:94
+msgid "Feed items stored by this campaign."
+msgstr ""
+
+#: includes/plugin_functions.php:18
+msgid "RSS Feed Reader DEACTIVATED."
+msgstr ""
+
+#: includes/plugin_functions.php:45
+msgid "Go to your RSS Feed Reader campaigns"
+msgstr ""
+
+#: includes/plugin_functions.php:45
+msgid "Campaigns"
+msgstr ""
+
+#: includes/plugin_functions.php:66
+msgid "Support"
+msgstr ""
+
+#: includes/plugin_functions.php:67
+msgid "Rate Plugin"
+msgstr ""
+
+#: wpematico_rss_feed_reader.php:181
+msgid "WPeMatico RSS Feed Reader Activated."
+msgstr ""
+
+#: wpematico_rss_feed_reader.php:193
+msgid "The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s"
+msgstr ""
+
+#: wpematico_rss_feed_reader.php:195
+msgid "Please %s to the last version ASAP to avoid errors."
+msgstr ""

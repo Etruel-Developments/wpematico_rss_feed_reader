@@ -42,7 +42,7 @@ function wpematico_rss_feed_reader_init_action_links($data)	{
 	return array_merge(
 		$data,
 		array(
-			'<a href="'.  admin_url('edit.php?post_type=wpematico&page=wpematico_settings&tab=rss_feed_reader').'" title="' . esc_html__('Go to RSS Feed Reader Settings Page', 'wpematico-rss-feed-reader') . '">' . esc_html__('Settings', 'wpematico-rss-feed-reader') . '</a>',
+			'<a href="'.  admin_url('edit.php?post_type=wpematico&campaign_type=rss_reader').'" title="' . esc_html__('Go to your RSS Feed Reader campaigns', 'wpematico-rss-feed-reader') . '">' . esc_html__('Campaigns', 'wpematico-rss-feed-reader') . '</a>',
 		)
 	);
 }
@@ -64,7 +64,7 @@ function wpematico_rss_feed_reader_init_row_meta($data, $page)	{
 		array(
 		'<a href="https://etruel.com/" target="_blank">' . esc_html('etruel Store') . '</a>',
 		'<a href="https://etruel.com/my-account/support/" target="_blank">' . esc_html__('Support', 'wpematico-rss-feed-reader') . '</a>',
-		'<a href="https://wordpress.org/support/view/plugin-reviews/wpematico?filter=5&rate=5#postform" target="_Blank" title="Rate 5 stars on Wordpress.org">' . esc_html__('Rate Plugin', 'wpematico-rss-feed-reader') . '</a>'
+		'<a href="https://wordpress.org/support/plugin/wpematico-rss-feed-reader/reviews/?filter=5#new-post" target="_blank" title="Rate 5 stars on WordPress.org">' . esc_html__('Rate Plugin', 'wpematico-rss-feed-reader') . '</a>'
 		)
 	);
 }	
