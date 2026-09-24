@@ -132,7 +132,9 @@ if (!class_exists('WPeMatico_RSS_Feed_Reader')) {
 		 * @return      void
 		 */
 		public static function load_textdomain() {
-			$lang_dir = WPEMATICO_RSS_FEED_READER_DIR . '/languages/';
+			// Relative to WP_PLUGIN_DIR: an absolute path here is appended to it and
+			// the bundled translations are never found.
+			$lang_dir = dirname(plugin_basename(WPEMATICO_RSS_FEED_READER_ROOT_FILE)) . '/languages/';
 			load_plugin_textdomain('wpematico-rss-feed-reader', false, $lang_dir);
 		}
 	}

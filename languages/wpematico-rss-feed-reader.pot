@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPeMatico RSS Feed Reader 2.0.0\n"
 "Report-Msgid-Bugs-To: https://etruel.com/my-account/support/\n"
-"POT-Creation-Date: 2026-09-23 18:45+0000\n"
+"POT-Creation-Date: 2026-09-24 15:29+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,111 +15,111 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: wpematico-rss-feed-reader\n"
 
-#: includes/campaign_edit.php:111
+#: includes/campaign_edit.php:115
 msgid "Max items to show in each read feed."
 msgstr ""
 
-#: includes/campaign_edit.php:112
+#: includes/campaign_edit.php:116
 msgid "Set a limit on how many feed items will be displayed, make sure this value is not less than the value of \"Max items to create on each fetch\"."
 msgstr ""
 
-#: includes/campaign_edit.php:115
+#: includes/campaign_edit.php:119
 msgid "How to display the feed content:"
 msgstr ""
 
-#: includes/campaign_edit.php:116
+#: includes/campaign_edit.php:120
 msgid "Wordpress filter"
 msgstr ""
 
-#: includes/campaign_edit.php:117
+#: includes/campaign_edit.php:121
 msgid "Use the WordPress function \"get_the_content()\" to display the content of the feed in the selected post type."
 msgstr ""
 
-#: includes/campaign_edit.php:119 includes/campaign_help.php:32
+#: includes/campaign_edit.php:123 includes/campaign_help.php:32
 msgid "RSS Page Template."
 msgstr ""
 
-#: includes/campaign_edit.php:120
+#: includes/campaign_edit.php:124
 msgid "Works only with \"pages\" you must choose the page and page template where the feed content will be displayed."
 msgstr ""
 
-#: includes/campaign_edit.php:121
+#: includes/campaign_edit.php:125
 msgid "Shortcode"
 msgstr ""
 
-#: includes/campaign_edit.php:123
+#: includes/campaign_edit.php:127
 msgid "Generates a shortcode that can be used in any place of the website to display the feed content."
 msgstr ""
 
-#: includes/campaign_edit.php:126
+#: includes/campaign_edit.php:130
 msgid "Layout"
 msgstr ""
 
-#: includes/campaign_edit.php:127
+#: includes/campaign_edit.php:131
 msgid "Pick how each feed item is arranged. You can fine-tune the item HTML below without changing the arrangement."
 msgstr ""
 
-#: includes/campaign_edit.php:131
+#: includes/campaign_edit.php:135
 msgid "List"
 msgstr ""
 
-#: includes/campaign_edit.php:132
+#: includes/campaign_edit.php:136
 msgid "Grid"
 msgstr ""
 
-#: includes/campaign_edit.php:133
+#: includes/campaign_edit.php:137
 msgid "Excerpt & Thumbnail"
 msgstr ""
 
-#: includes/campaign_edit.php:145
+#: includes/campaign_edit.php:149
 msgid "Custom template in use. Pick a layout above to reset it."
 msgstr ""
 
-#: includes/campaign_edit.php:146
+#: includes/campaign_edit.php:150
 msgid "<strong>Grid and Excerpt &amp; Thumbnail</strong> show each item image from the source feed, loaded remotely (not saved to your Media Library)."
 msgstr ""
 
-#: includes/campaign_edit.php:154
+#: includes/campaign_edit.php:158
 msgid "Item template"
 msgstr ""
 
-#: includes/campaign_edit.php:155
+#: includes/campaign_edit.php:159
 msgid "Edit the HTML used for each feed item. Editing keeps the selected layout arrangement."
 msgstr ""
 
-#: includes/campaign_edit.php:158
+#: includes/campaign_edit.php:162
 msgid "Available tags:"
 msgstr ""
 
-#: includes/campaign_edit.php:160
+#: includes/campaign_edit.php:164
 msgid "wrap the block that repeats for each feed item."
 msgstr ""
 
-#: includes/campaign_edit.php:161
+#: includes/campaign_edit.php:165
 msgid "item title."
 msgstr ""
 
-#: includes/campaign_edit.php:162
+#: includes/campaign_edit.php:166
 msgid "URL to the original item."
 msgstr ""
 
-#: includes/campaign_edit.php:163
+#: includes/campaign_edit.php:167
 msgid "item content or description."
 msgstr ""
 
-#: includes/campaign_edit.php:164
+#: includes/campaign_edit.php:168
 msgid "item image URL from the source feed (remote, not saved to Media)."
 msgstr ""
 
-#: includes/campaign_edit.php:165
+#: includes/campaign_edit.php:169
 msgid "item publication date."
 msgstr ""
 
-#: includes/campaign_edit.php:166
+#: includes/campaign_edit.php:170
 msgid "item publication time."
 msgstr ""
 
-#: includes/campaign_edit.php:167
+#: includes/campaign_edit.php:171
 msgid "source site URL."
 msgstr ""
 
@@ -127,23 +127,23 @@ msgstr ""
 msgid "RSS Feed Reader"
 msgstr ""
 
-#: includes/campaign_edit.php:64
+#: includes/campaign_edit.php:68
 msgid "RSS Contents"
 msgstr ""
 
-#: includes/campaign_edit.php:85
+#: includes/campaign_edit.php:89
 msgid "Max to fetch items value must be equal to the max to show items."
 msgstr ""
 
-#: includes/campaign_edit.php:91
+#: includes/campaign_edit.php:95
 msgid "This replaces your custom HTML with the selected layout template. Continue?"
 msgstr ""
 
-#: includes/campaign_edit.php:92 includes/campaign_edit.php:150
+#: includes/campaign_edit.php:96 includes/campaign_edit.php:154
 msgid "Show advanced Layout editor."
 msgstr ""
 
-#: includes/campaign_edit.php:93
+#: includes/campaign_edit.php:97
 msgid "Hide advanced Layout editor."
 msgstr ""
 
@@ -193,6 +193,10 @@ msgstr ""
 
 #: includes/class.extension-activation.php:90
 msgid "install it"
+msgstr ""
+
+#: includes/class.extension-activation.php:95
+msgid " requires WPeMatico! Please %s to continue!"
 msgstr ""
 
 #: includes/functions.php:359
