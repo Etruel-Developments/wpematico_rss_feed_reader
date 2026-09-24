@@ -86,6 +86,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * Improved: clearing a campaign's stored feed items is limited to users who can edit that campaign.
 * Improved: a campaign kept on the Excerpt & Thumbnail arrangement with an item template that has no image now reads as a clean stacked list instead of squeezing the title into a narrow column.
 * Improved: the campaign editor no longer offers the Categories, Tags and Post Format boxes on a reader campaign, which publishes no posts. Needs WPeMatico 2.9.
+* New: Spanish (es_ES) translation, bundled with the plugin and loaded on every supported WordPress version.
 
 = 1.0.0 =
 * First release
