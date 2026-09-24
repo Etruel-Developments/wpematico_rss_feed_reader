@@ -92,6 +92,6 @@ class WPeMatico_Extension_Activation {
         
         echo '<div class="error"><p>' . esc_html($this->plugin_name) . 
 				// translators: %s: link to activate or install core plugin 
-				sprintf( esc_html__( ' requires WPeMatico! Please %s to continue!', 'wpematico-extension-activation' ), $link ) . '</p></div>';
+				sprintf( esc_html__( ' requires WPeMatico! Please %s to continue!', 'wpematico-rss-feed-reader' ), $link ) . '</p></div>';
     }
 }
