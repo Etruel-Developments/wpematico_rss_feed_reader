@@ -87,6 +87,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * Improved: a campaign kept on the Excerpt & Thumbnail arrangement with an item template that has no image now reads as a clean stacked list instead of squeezing the title into a narrow column.
 * Improved: the campaign editor no longer offers the Categories, Tags and Post Format boxes on a reader campaign, which publishes no posts. Needs WPeMatico 2.9.
 * New: Spanish (es_ES) translation, bundled with the plugin and loaded on every supported WordPress version.
+* **Needs WPeMatico 2.9 or newer.** This version and WPeMatico 2.9 are released together and built for each other.
 
 = 1.0.0 =
 * First release
