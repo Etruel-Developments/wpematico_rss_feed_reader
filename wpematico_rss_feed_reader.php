@@ -30,7 +30,7 @@ if (!class_exists('WPeMatico_RSS_Feed_Reader')) {
 
 	// Minimum required WPeMatico version
 	if (!defined('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO')) {
-		define('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO', '2.8');
+		define('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO', '2.9');
 	}
 
 	/**
@@ -187,30 +187,27 @@ if (!class_exists('WPeMatico_RSS_Feed_Reader')) {
 
 	register_activation_hook(__FILE__, 'wpematico_rss_feed_reader_activation');
 
+	/**
+	 * The text is built inside the admin_notices callback on purpose: this runs at
+	 * plugin load, and a __() before init makes WP 6.7+ report the domain as loaded
+	 * too early. Only the decision is taken here.
+	 */
 	function wpematico_rss_requirements() {
-		$message			  = $wperss_admin_message = '';
-		$checks				  = true;
 		// Core is old. 
 		if (class_exists('WPeMatico') && version_compare(WPEMATICO_VERSION, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO, '<')) {
-			$message .= sprintf(esc_html__('The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s', 'wpematico-rss-feed-reader'), WPEMATICO_RSS_FEED_READER_VER, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO) . '<br />';
-			$message .= sprintf(
-					esc_html__('Please %s to the last version ASAP to avoid errors.', 'wpematico-rss-feed-reader'),
-					' <a href="' . esc_url(admin_url('plugins.php')) . '#wpematico">update "WPeMatico"</a>'
-			);
-			$checks	 = false;
-		}
-
-		if (!empty($message))
-			$wperss_admin_message = '<div id="message" class="error fade"><strong>WPeMatico RSS Feed Reader:</strong><br />' . $message . '</div>';
-
-		if (!empty($wperss_admin_message)) {
-			//send response to admin notice
-			add_action('admin_notices', function () use ($wperss_admin_message) {
-				echo wp_kses_post($wperss_admin_message);
+			add_action('admin_notices', function () {
+				$message = sprintf(esc_html__('The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s', 'wpematico-rss-feed-reader'), WPEMATICO_RSS_FEED_READER_VER, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO) . '<br />';
+				$message .= sprintf(
+						esc_html__('Please %s to the last version ASAP to avoid errors.', 'wpematico-rss-feed-reader'),
+						' <a href="' . esc_url(admin_url('plugins.php')) . '#wpematico">update "WPeMatico"</a>'
+				);
+				echo wp_kses_post('<div id="message" class="error fade"><strong>WPeMatico RSS Feed Reader:</strong><br />' . $message . '</div>');
 			});
+
+			return false;
 		}
 
-		return $checks;
+		return true;
 	}
 
 }
