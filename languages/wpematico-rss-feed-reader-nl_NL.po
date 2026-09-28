@@ -23,11 +23,11 @@ msgstr ""
 "X-Domain: wpematico-rss-feed-reader\n"
 
 #: includes/campaign_edit.php:115
-msgid "Max items to show in each read feed."
+msgid "Max items to show from each feed."
 msgstr "Maximaal aantal items dat in elke gelezen feed wordt getoond."
 
 #: includes/campaign_edit.php:116
-msgid "Set a limit on how many feed items will be displayed, make sure this value is not less than the value of \"Max items to create on each fetch\"."
+msgid "Set a limit on how many feed items will be displayed. Make sure this value is not less than the value of \"Max items to create on each fetch\"."
 msgstr "Stel een grens in voor hoeveel feed-items worden getoond; zorg dat deze waarde niet lager is dan die van \"Maximaal aantal items om bij elke ophaalronde te maken\"."
 
 #: includes/campaign_edit.php:119
@@ -35,7 +35,7 @@ msgid "How to display the feed content:"
 msgstr "Hoe de feed-inhoud wordt getoond:"
 
 #: includes/campaign_edit.php:120
-msgid "Wordpress filter"
+msgid "WordPress filter"
 msgstr "WordPress-filter"
 
 #: includes/campaign_edit.php:121
@@ -47,7 +47,7 @@ msgid "RSS Page Template."
 msgstr "RSS-paginatemplate."
 
 #: includes/campaign_edit.php:124
-msgid "Works only with \"pages\" you must choose the page and page template where the feed content will be displayed."
+msgid "Works only with pages: you must choose the page and the page template where the feed content will be displayed."
 msgstr "Werkt alleen met \"pagina's\": je moet de pagina en de paginatemplate kiezen waar de feed-inhoud wordt getoond."
 
 #: includes/campaign_edit.php:125
@@ -55,7 +55,7 @@ msgid "Shortcode"
 msgstr "Shortcode"
 
 #: includes/campaign_edit.php:127
-msgid "Generates a shortcode that can be used in any place of the website to display the feed content."
+msgid "Generates a shortcode that can be used anywhere on the website to display the feed content."
 msgstr "Maakt een shortcode die je overal op de site kunt gebruiken om de feed-inhoud te tonen."
 
 #: includes/campaign_edit.php:130
@@ -139,7 +139,7 @@ msgid "RSS Contents"
 msgstr "RSS-inhoud"
 
 #: includes/campaign_edit.php:89
-msgid "Max to fetch items value must be equal to the max to show items."
+msgid "The max items to fetch must be equal to the max items to show."
 msgstr "Het maximale aantal items om op te halen moet gelijk zijn aan het maximale aantal items om te tonen."
 
 #: includes/campaign_edit.php:95
@@ -159,7 +159,7 @@ msgid "Max items to show."
 msgstr "Maximaal aantal te tonen items."
 
 #: includes/campaign_help.php:16
-msgid "Maximum items to be shown in each displayed feed: allows to set a limit on how many feed items will be shown in the selected post type, regardless of the method you have chosen. Also, make sure that this value is not less than the \"Max items to create on each fetch\" field which controls the items to be processed during the campaign execution."
+msgid "Maximum items to be shown in each displayed feed: it sets a limit on how many feed items are shown in the selected post type, whichever method you have chosen. Also, make sure that this value is not less than the \"Max items to create on each fetch\" field, which controls the items processed during the campaign run."
 msgstr "Maximaal aantal items dat in elke getoonde feed verschijnt: beperkt hoeveel feed-items in het gekozen berichttype worden getoond, welke methode je ook hebt gekozen. Zorg er ook voor dat deze waarde niet lager is dan het veld \"Maximaal aantal items om bij elke ophaalronde te maken\", dat de items regelt die tijdens het uitvoeren van de campagne worden verwerkt."
 
 #: includes/campaign_help.php:21
@@ -167,11 +167,11 @@ msgid "Use %s WordPress Filter."
 msgstr "Het WordPress-filter %s gebruiken."
 
 #: includes/campaign_help.php:26
-msgid "Allows to choose the Post Type where the feed content will be displayed. For example, if you select \"Page\", \"Post\" or another CPT, you will need to select the specific post where the content will be displayed using the WordPress %s function."
+msgid "Lets you choose the post type where the feed content will be displayed. For example, if you select \"Page\", \"Post\" or another custom post type, you will need to select the specific post where the content will be displayed, using the WordPress %s function."
 msgstr "Bepaalt het berichttype waarin de feed-inhoud wordt getoond. Kies je bijvoorbeeld \"Pagina\", \"Bericht\" of een ander CPT, dan moet je het specifieke bericht kiezen waarin de inhoud met de WordPress-functie %s wordt getoond."
 
 #: includes/campaign_help.php:33
-msgid "Exclusive for Pages, allows to select a previously created page and also its page template to display the feed content, you will be able to choose the default template of the plugin or theme templates."
+msgid "Only for pages: it lets you select a page you already created, and its page template, to display the feed content. You can choose the default template of the plugin or one of the theme templates."
 msgstr "Alleen voor pagina's: hiermee kies je een al bestaande pagina en ook haar paginatemplate voor de feed-inhoud; je kunt de standaardtemplate van de plugin of de templates van het thema nemen."
 
 #: includes/campaign_help.php:37
@@ -179,7 +179,7 @@ msgid "Use Shortcode."
 msgstr "Shortcode gebruiken."
 
 #: includes/campaign_help.php:38
-msgid "Generate a shortcode using the campaign slug. This shortcode can be inserted on your website to display the content of the feed configured in the campaign, you can modify the shortcode by editing the campaign slug."
+msgid "Generate a shortcode from the campaign slug. This shortcode can be inserted anywhere on your website to display the content of the feed set up in the campaign, and editing the campaign slug changes it."
 msgstr "Maakt een shortcode op basis van de slug van de campagne. Die shortcode kun je op je site plaatsen om de in de campagne ingestelde feed-inhoud te tonen, en je wijzigt hem door de slug van de campagne aan te passen."
 
 #: includes/campaign_help.php:42
@@ -187,7 +187,7 @@ msgid "Template feed."
 msgstr "Template van de feed."
 
 #: includes/campaign_help.php:43
-msgid "Allows to customize the HTML structure where the feed items will be displayed, adjust the layout, styles and visual components to perfectly fit your site, but be careful not to delete the variables that store each content."
+msgid "Lets you customize the HTML structure the feed items are displayed in, and adjust the layout, styles and visual components to fit your site. Be careful not to delete the variables that carry each content."
 msgstr "Hiermee pas je de HTML-structuur aan waarin de feed-items worden getoond, en stem je indeling, stijlen en visuele onderdelen af op je site; let op dat je de variabelen niet verwijdert die elke inhoud bevatten."
 
 #: includes/class.extension-activation.php:50
@@ -253,9 +253,9 @@ msgid "WPeMatico RSS Feed Reader Activated."
 msgstr "WPeMatico RSS Feed Reader geactiveerd."
 
 #: wpematico_rss_feed_reader.php:199
-msgid "The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s"
+msgid "The current version of WPeMatico RSS Feed Reader %s needs WPeMatico %s"
 msgstr "De huidige versie van WPeMatico RSS Feed Reader %s heeft WPeMatico %s nodig"
 
 #: wpematico_rss_feed_reader.php:201
-msgid "Please %s to the last version ASAP to avoid errors."
+msgid "Please %s to the latest version as soon as possible to avoid errors."
 msgstr "%s zo snel mogelijk naar de nieuwste versie om fouten te voorkomen."
