@@ -196,9 +196,9 @@ if (!class_exists('WPeMatico_RSS_Feed_Reader')) {
 		// Core is old. 
 		if (class_exists('WPeMatico') && version_compare(WPEMATICO_VERSION, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO, '<')) {
 			add_action('admin_notices', function () {
-				$message = sprintf(esc_html__('The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s', 'wpematico-rss-feed-reader'), WPEMATICO_RSS_FEED_READER_VER, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO) . '<br />';
+				$message = sprintf(esc_html__('The current version of WPeMatico RSS Feed Reader %s needs WPeMatico %s', 'wpematico-rss-feed-reader'), WPEMATICO_RSS_FEED_READER_VER, WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO) . '<br />';
 				$message .= sprintf(
-						esc_html__('Please %s to the last version ASAP to avoid errors.', 'wpematico-rss-feed-reader'),
+						esc_html__('Please %s to the latest version as soon as possible to avoid errors.', 'wpematico-rss-feed-reader'),
 						' <a href="' . esc_url(admin_url('plugins.php')) . '#wpematico">update "WPeMatico"</a>'
 				);
 				echo wp_kses_post('<div id="message" class="error fade"><strong>WPeMatico RSS Feed Reader:</strong><br />' . $message . '</div>');
