@@ -8,11 +8,11 @@ msgstr ""
 "PO-Revision-Date: 2026-09-27 00:00+0000\n"
 "Last-Translator: Etruel Developments <translations@etruel.com>\n"
 "Language-Team: Etruel Developments <translations@etruel.com>\n"
-"Language: es_ES\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c\n"
 "X-Poedit-Basepath: ..\n"
@@ -24,238 +24,239 @@ msgstr ""
 
 #: includes/campaign_edit.php:115
 msgid "Max items to show in each read feed."
-msgstr "Max elementos a mostrar en cada feed leído."
+msgstr "Максимум элементов, показываемых в каждом читаемом фиде."
 
 #: includes/campaign_edit.php:116
 msgid "Set a limit on how many feed items will be displayed, make sure this value is not less than the value of \"Max items to create on each fetch\"."
-msgstr "Establece un límite de cuántos elementos del feed se mostrarán; asegúrate de que este valor no sea menor que el del campo «Max elementos para crear en cada búsqueda»."
+msgstr "Задайте предел, сколько элементов фида будет показано; следите, чтобы это значение не было меньше значения «Максимум элементов, создаваемых за один запуск»."
 
 #: includes/campaign_edit.php:119
 msgid "How to display the feed content:"
-msgstr "Cómo mostrar el contenido del feed:"
+msgstr "Как показывать содержимое фида:"
 
 #: includes/campaign_edit.php:120
 msgid "Wordpress filter"
-msgstr "Filtro de WordPress"
+msgstr "Фильтр WordPress"
 
 #: includes/campaign_edit.php:121
 msgid "Use the WordPress function \"get_the_content()\" to display the content of the feed in the selected post type."
-msgstr "Usa la función de WordPress «get_the_content()» para mostrar el contenido del feed en el tipo de contenido seleccionado."
+msgstr "Использует функцию WordPress \"get_the_content()\", чтобы показать содержимое фида в выбранном типе записи."
 
 #: includes/campaign_edit.php:123 includes/campaign_help.php:32
 msgid "RSS Page Template."
-msgstr "Plantilla de página RSS."
+msgstr "Шаблон RSS-страницы."
 
 #: includes/campaign_edit.php:124
 msgid "Works only with \"pages\" you must choose the page and page template where the feed content will be displayed."
-msgstr "Solo funciona con «páginas»: debes elegir la página y la plantilla de página donde se mostrará el contenido del feed."
+msgstr "Работает только со «страницами»: нужно выбрать страницу и шаблон страницы, где будет показано содержимое фида."
 
 #: includes/campaign_edit.php:125
 msgid "Shortcode"
-msgstr "Shortcode"
+msgstr "Шорткод"
 
 #: includes/campaign_edit.php:127
 msgid "Generates a shortcode that can be used in any place of the website to display the feed content."
-msgstr "Genera un shortcode que puedes usar en cualquier lugar del sitio para mostrar el contenido del feed."
+msgstr "Создаёт шорткод, который можно вставить в любом месте сайта, чтобы показать содержимое фида."
 
 #: includes/campaign_edit.php:130
 msgid "Layout"
-msgstr "Disposición"
+msgstr "Раскладка"
 
 #: includes/campaign_edit.php:131
 msgid "Pick how each feed item is arranged. You can fine-tune the item HTML below without changing the arrangement."
-msgstr "Elige cómo se organiza cada elemento del feed. Puedes ajustar el HTML del elemento más abajo sin cambiar la disposición."
+msgstr "Выберите, как располагается каждый элемент фида. HTML элемента можно донастроить ниже, не меняя расположение."
 
 #: includes/campaign_edit.php:135
 msgid "List"
-msgstr "Lista"
+msgstr "Список"
 
 #: includes/campaign_edit.php:136
 msgid "Grid"
-msgstr "Cuadrícula"
+msgstr "Сетка"
 
 #: includes/campaign_edit.php:137
 msgid "Excerpt & Thumbnail"
-msgstr "Extracto y miniatura"
+msgstr "Отрывок и миниатюра"
 
 #: includes/campaign_edit.php:149
 msgid "Custom template in use. Pick a layout above to reset it."
-msgstr "Hay una plantilla personalizada en uso. Elige una disposición de arriba para restablecerla."
+msgstr "Используется свой шаблон. Выберите раскладку выше, чтобы сбросить его."
 
 #: includes/campaign_edit.php:150
 msgid "<strong>Grid and Excerpt &amp; Thumbnail</strong> show each item image from the source feed, loaded remotely (not saved to your Media Library)."
-msgstr "<strong>Cuadrícula</strong> y <strong>Extracto y miniatura</strong> muestran la imagen de cada elemento desde el feed de origen, cargada de forma remota (no se guarda en tu biblioteca de medios)."
+msgstr "<strong>Сетка</strong> и <strong>Отрывок и миниатюра</strong> показывают изображение каждого элемента из исходного фида, загруженное с удалённого адреса (в медиабиблиотеку оно не сохраняется)."
 
 #: includes/campaign_edit.php:158
 msgid "Item template"
-msgstr "Plantilla del elemento"
+msgstr "Шаблон элемента"
 
 #: includes/campaign_edit.php:159
 msgid "Edit the HTML used for each feed item. Editing keeps the selected layout arrangement."
-msgstr "Edita el HTML que se usa para cada elemento del feed. Al editarlo se mantiene la disposición seleccionada."
+msgstr "Измените HTML, который используется для каждого элемента фида. При правке выбранное расположение сохраняется."
 
 #: includes/campaign_edit.php:162
 msgid "Available tags:"
-msgstr "Etiquetas disponibles:"
+msgstr "Доступные теги:"
 
 #: includes/campaign_edit.php:164
 msgid "wrap the block that repeats for each feed item."
-msgstr "envuelven el bloque que se repite por cada elemento del feed."
+msgstr "обрамляют блок, который повторяется для каждого элемента фида."
 
 #: includes/campaign_edit.php:165
 msgid "item title."
-msgstr "título del elemento."
+msgstr "заголовок элемента."
 
 #: includes/campaign_edit.php:166
 msgid "URL to the original item."
-msgstr "URL del elemento original."
+msgstr "URL исходного элемента."
 
 #: includes/campaign_edit.php:167
 msgid "item content or description."
-msgstr "contenido o descripción del elemento."
+msgstr "содержимое или описание элемента."
 
 #: includes/campaign_edit.php:168
 msgid "item image URL from the source feed (remote, not saved to Media)."
-msgstr "URL de la imagen del elemento en el feed de origen (remota, no se guarda en medios)."
+msgstr "URL изображения элемента из исходного фида (удалённое, в медиафайлы не сохраняется)."
 
 #: includes/campaign_edit.php:169
 msgid "item publication date."
-msgstr "fecha de publicación del elemento."
+msgstr "дата публикации элемента."
 
 #: includes/campaign_edit.php:170
 msgid "item publication time."
-msgstr "hora de publicación del elemento."
+msgstr "время публикации элемента."
 
 #: includes/campaign_edit.php:171
 msgid "source site URL."
-msgstr "URL del sitio de origen."
+msgstr "URL сайта-источника."
 
 #: includes/campaign_edit.php:43
 msgid "RSS Feed Reader"
-msgstr "Lector de feeds RSS"
+msgstr "RSS Feed Reader"
 
 #: includes/campaign_edit.php:68
 msgid "RSS Contents"
-msgstr "Contenidos RSS"
+msgstr "Содержимое RSS"
 
 #: includes/campaign_edit.php:89
 msgid "Max to fetch items value must be equal to the max to show items."
-msgstr "El valor de máximo de elementos a obtener debe ser igual al de máximo de elementos a mostrar."
+msgstr "Максимум элементов для получения должен быть равен максимуму элементов для показа."
 
 #: includes/campaign_edit.php:95
 msgid "This replaces your custom HTML with the selected layout template. Continue?"
-msgstr "Esto reemplaza tu HTML personalizado por la plantilla de la disposición seleccionada. ¿Continuar?"
+msgstr "Это заменит ваш HTML шаблоном выбранной раскладки. Продолжить?"
 
 #: includes/campaign_edit.php:96 includes/campaign_edit.php:154
 msgid "Show advanced Layout editor."
-msgstr "Mostrar el editor avanzado de disposición."
+msgstr "Показать расширенный редактор раскладки."
 
 #: includes/campaign_edit.php:97
 msgid "Hide advanced Layout editor."
-msgstr "Ocultar el editor avanzado de disposición."
+msgstr "Скрыть расширенный редактор раскладки."
 
 #: includes/campaign_help.php:15
 msgid "Max items to show."
-msgstr "Max elementos a mostrar."
+msgstr "Максимум элементов для показа."
 
 #: includes/campaign_help.php:16
 msgid "Maximum items to be shown in each displayed feed: allows to set a limit on how many feed items will be shown in the selected post type, regardless of the method you have chosen. Also, make sure that this value is not less than the \"Max items to create on each fetch\" field which controls the items to be processed during the campaign execution."
-msgstr "Máximo de elementos que se mostrarán en cada feed: permite limitar cuántos elementos del feed se mostrarán en el tipo de contenido seleccionado, sea cual sea el método elegido. Además, asegúrate de que este valor no sea menor que el del campo «Max elementos para crear en cada búsqueda», que controla los elementos que se procesan durante la ejecución de la campaña."
+msgstr "Максимум элементов, показываемых в каждом выводимом фиде: ограничивает, сколько элементов фида будет показано в выбранном типе записи, независимо от выбранного способа. Следите также, чтобы это значение не было меньше поля «Максимум элементов, создаваемых за один запуск», которое задаёт элементы, обрабатываемые во время запуска кампании."
 
 #: includes/campaign_help.php:21
 msgid "Use %s WordPress Filter."
-msgstr "Usar el filtro %s de WordPress."
+msgstr "Использовать фильтр WordPress %s."
 
 #: includes/campaign_help.php:26
 msgid "Allows to choose the Post Type where the feed content will be displayed. For example, if you select \"Page\", \"Post\" or another CPT, you will need to select the specific post where the content will be displayed using the WordPress %s function."
-msgstr "Permite elegir el tipo de contenido donde se mostrará el contenido del feed. Por ejemplo, si eliges «Página», «Entrada» u otro CPT, tendrás que seleccionar la publicación concreta en la que se mostrará el contenido mediante la función %s de WordPress."
+msgstr "Задаёт тип записи, в котором будет показано содержимое фида. Например, если выбрать «Страницу», «Запись» или другой CPT, придётся выбрать конкретную запись, в которой содержимое будет показано функцией WordPress %s."
 
 #: includes/campaign_help.php:33
 msgid "Exclusive for Pages, allows to select a previously created page and also its page template to display the feed content, you will be able to choose the default template of the plugin or theme templates."
-msgstr "Exclusivo para páginas: permite seleccionar una página ya creada y también su plantilla de página para mostrar el contenido del feed; podrás elegir la plantilla predeterminada del plugin o las plantillas del tema."
+msgstr "Только для страниц: позволяет выбрать уже созданную страницу и её шаблон страницы для содержимого фида; можно взять шаблон плагина по умолчанию или шаблоны темы."
 
 #: includes/campaign_help.php:37
 msgid "Use Shortcode."
-msgstr "Usar shortcode."
+msgstr "Использовать шорткод."
 
 #: includes/campaign_help.php:38
 msgid "Generate a shortcode using the campaign slug. This shortcode can be inserted on your website to display the content of the feed configured in the campaign, you can modify the shortcode by editing the campaign slug."
-msgstr "Genera un shortcode a partir del slug de la campaña. Puedes insertarlo en tu sitio para mostrar el contenido del feed configurado en la campaña, y modificarlo editando el slug de la campaña."
+msgstr "Создаёт шорткод из ярлыка кампании. Этот шорткод можно вставить на сайт, чтобы показать содержимое фида, настроенное в кампании, а изменить его можно через ярлык кампании."
 
 #: includes/campaign_help.php:42
 msgid "Template feed."
-msgstr "Plantilla del feed."
+msgstr "Шаблон фида."
 
 #: includes/campaign_help.php:43
 msgid "Allows to customize the HTML structure where the feed items will be displayed, adjust the layout, styles and visual components to perfectly fit your site, but be careful not to delete the variables that store each content."
-msgstr "Permite personalizar la estructura HTML donde se mostrarán los elementos del feed y ajustar la disposición, los estilos y los componentes visuales para que encajen con tu sitio; ten cuidado de no borrar las variables que contienen cada contenido."
+msgstr "Позволяет настроить HTML-структуру, в которой показываются элементы фида, и подогнать раскладку, стили и видимые части под ваш сайт; при этом не удаляйте переменные, в которых лежит содержимое."
 
 #: includes/class.extension-activation.php:50
 msgid "This plugin"
-msgstr "Este plugin"
+msgstr "Этот плагин"
 
 #: includes/class.extension-activation.php:87
 msgid "activate it"
-msgstr "actívalo"
+msgstr "активируйте его"
 
 #: includes/class.extension-activation.php:90
 msgid "install it"
-msgstr "instálalo"
+msgstr "установите его"
 
 #: includes/class.extension-activation.php:95
 msgid " requires WPeMatico! Please %s to continue!"
-msgstr " ¡necesita WPeMatico! Por favor, %s para continuar."
+msgstr " требует WPeMatico! Пожалуйста, %s, чтобы продолжить!"
 
 #: includes/functions.php:359
 msgid "Feed reader template"
-msgstr "Plantilla del lector de feeds"
+msgstr "Шаблон чтения фидов"
 
 #: includes/functions.php:366
 msgid "No campaign ID has been supplied!"
-msgstr "¡No se ha indicado ningún ID de campaña!"
+msgstr "Не передан ID кампании!"
 
 #: includes/functions.php:380
 msgid "You are not allowed to do this."
-msgstr "No tienes permisos para hacer esto."
+msgstr "Вам это делать не разрешено."
 
 #: includes/functions.php:75
 msgid "%s item stored"
 msgid_plural "%s items stored"
-msgstr[0] "%s elemento guardado"
-msgstr[1] "%s elementos guardados"
+msgstr[0] "Сохранён %s элемент"
+msgstr[1] "Сохранено %s элемента"
+msgstr[2] "Сохранено %s элементов"
 
 #: includes/functions.php:94
 msgid "Feed items stored by this campaign."
-msgstr "Elementos del feed guardados por esta campaña."
+msgstr "Элементы фида, сохранённые этой кампанией."
 
 #: includes/plugin_functions.php:18
 msgid "RSS Feed Reader DEACTIVATED."
-msgstr "RSS Feed Reader DESACTIVADO."
+msgstr "RSS Feed Reader ОТКЛЮЧЁН."
 
 #: includes/plugin_functions.php:45
 msgid "Go to your RSS Feed Reader campaigns"
-msgstr "Ir a tus campañas de RSS Feed Reader"
+msgstr "Перейти к вашим кампаниям RSS Feed Reader"
 
 #: includes/plugin_functions.php:45
 msgid "Campaigns"
-msgstr "Campañas"
+msgstr "Кампании"
 
 #: includes/plugin_functions.php:66
 msgid "Support"
-msgstr "Soporte"
+msgstr "Поддержка"
 
 #: includes/plugin_functions.php:67
 msgid "Rate Plugin"
-msgstr "Valorar el plugin"
+msgstr "Оценить плагин"
 
 #: wpematico_rss_feed_reader.php:183
 msgid "WPeMatico RSS Feed Reader Activated."
-msgstr "WPeMatico RSS Feed Reader activado."
+msgstr "WPeMatico RSS Feed Reader активирован."
 
 #: wpematico_rss_feed_reader.php:199
 msgid "The current version WPeMatico RSS Feed Reader %s needs WPeMatico %s"
-msgstr "La versión actual de WPeMatico RSS Feed Reader %s necesita WPeMatico %s"
+msgstr "Текущая версия WPeMatico RSS Feed Reader %s требует WPeMatico %s"
 
 #: wpematico_rss_feed_reader.php:201
 msgid "Please %s to the last version ASAP to avoid errors."
-msgstr "Por favor, %s a la última versión cuanto antes para evitar errores."
+msgstr "Пожалуйста, %s до последней версии как можно скорее, чтобы избежать ошибок."
