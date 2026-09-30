@@ -30,7 +30,7 @@ if (!class_exists('WPeMatico_RSS_Feed_Reader')) {
 
 	// Minimum required WPeMatico version
 	if (!defined('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO')) {
-		define('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO', '2.9');
+		define('WPEMATICO_RSS_FEED_READER_REQ_WPEMATICO', '2.8.27');
 	}
 
 	/**
