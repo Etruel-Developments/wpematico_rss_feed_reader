@@ -68,7 +68,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 
 == Changelog ==
 
-= 2.0.0 =
+= 2.0.0 Sep 30, 2026 =
 * New: Display layouts — choose List, Grid, or Excerpt & Thumbnail from a visual picker in the campaign editor.
 * New: "Customize HTML" advanced mode to edit the per-item template without changing the selected layout.
 * New: ItemImage template tag to show each item's image (from the source feed) in the image-based layouts.
@@ -87,7 +87,7 @@ No. Plugin requires WPeMatico Free Version installed and activated.
 * Improved: a campaign kept on the Excerpt & Thumbnail arrangement with an item template that has no image now reads as a clean stacked list instead of squeezing the title into a narrow column.
 * Improved: the campaign editor no longer offers the Categories, Tags and Post Format boxes on a reader campaign, which publishes no posts. Needs WPeMatico 2.9.
 * New: Spanish (es_ES) translation, bundled with the plugin and loaded on every supported WordPress version.
-* **Needs WPeMatico 2.9 or newer.** This version and WPeMatico 2.9 are released together and built for each other.
+* **Works on WPeMatico 2.8.27 and on 2.9.** Update this add-on before moving WPeMatico to 2.9, which asks for this version.
 
 = 1.0.0 =
 * First release
