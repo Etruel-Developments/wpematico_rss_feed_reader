@@ -195,13 +195,15 @@
 .wpe_rss-template-toggle{
   margin: 12px 0 0;
 }
-.wpe_rss-advanced-toggle{
+.wp-core-ui .button.wpe_rss-advanced-toggle{
   display: inline-flex;
   align-items: center;
   gap: 2px;
   text-decoration: none;
 }
-.wpe_rss-advanced-toggle .dashicons{
+.wp-core-ui .button.wpe_rss-advanced-toggle .dashicons{
+  line-height: 20px;
+  vertical-align: middle;
   transition: transform .12s ease;
 }
 .wpe_rss-advanced-toggle.is-open .dashicons{
