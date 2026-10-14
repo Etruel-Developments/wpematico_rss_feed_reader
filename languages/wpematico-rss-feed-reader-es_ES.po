@@ -172,7 +172,7 @@ msgstr "Permite elegir el tipo de contenido donde se mostrará el contenido del 
 
 #: includes/campaign_help.php:33
 msgid "Only for pages: it lets you select a page you already created, and its page template, to display the feed content. You can choose the default template of the plugin or one of the theme templates."
-msgstr "Exclusivo para páginas: permite seleccionar una página ya creada y también su plantilla de página para mostrar el contenido del feed; podrás elegir la plantilla predeterminada del plugin o las plantillas del tema."
+msgstr "Exclusivo para páginas: permite seleccionar una página ya creada y también su plantilla de página para mostrar el contenido del feed; podrás elegir la plantilla por defecto del plugin o las plantillas del tema."
 
 #: includes/campaign_help.php:37
 msgid "Use Shortcode."
